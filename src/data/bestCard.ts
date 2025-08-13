@@ -9,6 +9,8 @@ export const BEST_PRODUCTS_MOCK: ProductCard[] = [
     newPrice: 260,
     rating: 5,
     reviews: 88,
+    description:
+      "Insulated north-style coat built for harsh winters with a windproof shell and soft lining for everyday warmth.",
   },
   {
     id: 2,
@@ -18,6 +20,8 @@ export const BEST_PRODUCTS_MOCK: ProductCard[] = [
     newPrice: 960,
     rating: 4,
     reviews: 75,
+    description:
+      "Premium duffle bag inspired by Gucci aesthetics—roomy main compartment and durable finish for travel or gym.",
   },
   {
     id: 3,
@@ -27,13 +31,18 @@ export const BEST_PRODUCTS_MOCK: ProductCard[] = [
     newPrice: 160,
     rating: 5,
     reviews: 99,
+    description:
+      "All-in-one RGB liquid cooler that keeps your CPU stable and quiet under heavy loads.",
   },
   {
     id: 4,
     title: "Small BookSelf",
     image: "src/assets/BestCard/bookself.png",
-    newPrice: 380,
+    oldPrice: 380,
+    newPrice: 260,
     rating: 4.5,
     reviews: 99,
+    description:
+      "Compact, minimalist bookshelf for organizing and displaying your favorite reads and décor.",
   },
 ];

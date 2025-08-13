@@ -4,11 +4,13 @@ export const EXPLORE_PRODUCTS_MOCK: ProductCard[] = [
   {
     id: 1,
     title: "Breed Dry Dog Food",
-    image: "src//assets/products/card1.png",
+    image: "src/assets/products/card1.png",
     newPrice: 100,
     rating: 3,
     reviews: 35,
     isNew: false,
+    description:
+      "Complete and balanced dry food for adult dogs with a protein-rich formula for daily nutrition.",
   },
   {
     id: 2,
@@ -18,6 +20,8 @@ export const EXPLORE_PRODUCTS_MOCK: ProductCard[] = [
     rating: 4,
     reviews: 95,
     isNew: false,
+    description:
+      "Canon EOS DSLR that captures crisp photos and Full HD video—perfect for beginners and hobbyists.",
   },
   {
     id: 3,
@@ -27,6 +31,8 @@ export const EXPLORE_PRODUCTS_MOCK: ProductCard[] = [
     rating: 5,
     reviews: 325,
     isNew: false,
+    description:
+      '15.6" FHD gaming laptop with fast graphics and responsive keyboard for smooth competitive play.',
   },
   {
     id: 4,
@@ -36,6 +42,8 @@ export const EXPLORE_PRODUCTS_MOCK: ProductCard[] = [
     rating: 4,
     reviews: 145,
     isNew: false,
+    description:
+      "Personalized skincare bundle designed to target acne and uneven texture for clearer-looking skin.",
   },
   {
     id: 5,
@@ -46,6 +54,8 @@ export const EXPLORE_PRODUCTS_MOCK: ProductCard[] = [
     reviews: 65,
     isNew: true,
     colors: ["#D30202", "#000000"],
+    description:
+      "Rechargeable ride-on car for kids with lights and music—safe, sturdy, and fun to drive.",
   },
   {
     id: 6,
@@ -56,6 +66,8 @@ export const EXPLORE_PRODUCTS_MOCK: ProductCard[] = [
     reviews: 35,
     isNew: true,
     colors: ["#E4D24A", "#1D1D1D"],
+    description:
+      "Lightweight junior football boots offering firm-ground traction, comfort, and speed for young players.",
   },
   {
     id: 7,
@@ -64,7 +76,9 @@ export const EXPLORE_PRODUCTS_MOCK: ProductCard[] = [
     newPrice: 600,
     rating: 4.5,
     reviews: 55,
-    colors: ["#000000", "#E21C2A"],
+    colors: ["#000000", "#E212CA"],
+    description:
+      "Ergonomic USB controller with precise sticks and triggers—plug-and-play for PC gaming.",
   },
   {
     id: 8,
@@ -74,5 +88,7 @@ export const EXPLORE_PRODUCTS_MOCK: ProductCard[] = [
     rating: 4.5,
     reviews: 55,
     colors: ["#0A3F37", "#C3332E"],
+    description:
+      "Lightweight quilted satin jacket with a glossy finish—elevated street style for cool days.",
   },
 ];

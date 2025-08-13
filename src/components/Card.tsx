@@ -3,6 +3,7 @@ import StarRating from "./StarRating";
 import { cn } from "../utils/cn";
 import { CiHeart } from "react-icons/ci";
 import { IoEyeOutline } from "react-icons/io5";
+import { useNavigate } from "react-router";
 
 type CardProps = {
   product: ProductCard;
@@ -22,6 +23,7 @@ export default function Card({
   variant = "default",
   className,
 }: CardProps) {
+  const navigate = useNavigate();
   const {
     title,
     image,
@@ -64,8 +66,9 @@ export default function Card({
           </button>
           <button
             type="button"
-            aria-label="Compare item"
-            className="grid h-8 w-8 place-items-center rounded-full bg-white shadow-sm ring-1 ring-black/5 hover:bg-black hover:text-white transition"
+            aria-label="View details"
+            onClick={() => navigate("/productdetails", { state: { product } })}
+            className="grid h-8 w-8 place-items-center cursor-pointer rounded-full bg-white shadow-sm ring-1 ring-black/5 hover:bg-black hover:text-white transition"
           >
             <IoEyeOutline size={16} />
           </button>

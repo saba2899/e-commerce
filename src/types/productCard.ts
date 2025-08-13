@@ -9,4 +9,5 @@ export type ProductCard = {
   reviews: number;
   isNew?: boolean;
   colors?: string[];
+  description?: string;
 };
