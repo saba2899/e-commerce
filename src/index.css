@@ -1,0 +1,67 @@
+@import "tailwindcss";
+
+body {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+}
+
+html {
+  scrollbar-gutter: stable;
+  overflow-y: scroll;
+}
+
+html::-webkit-scrollbar {
+  width: 1px;
+}
+
+* {
+  box-sizing: border-box;
+}
+
+*::-webkit-scrollbar {
+  width: 6px;
+}
+*::-webkit-scrollbar-thumb {
+  background: #ff4434;
+  border-radius: 8px;
+
+  border: 2px solid transparent;
+  background-clip: content-box;
+}
+
+.page-container {
+  @apply max-w-[1200px] mx-auto px-4;
+}
+.header-link {
+  @apply text-sm md:text-base hover:text-black/60 transition;
+}
+.num {
+  font-variant-numeric: tabular-nums;
+}
+
+.hero-swiper .swiper-pagination {
+  left: 50% !important;
+  transform: translateX(-50%);
+  bottom: 12px !important;
+}
+.hero-swiper .swiper-pagination-bullet {
+  opacity: 1 !important;
+  background: #d1d5db !important;
+  border: 1px solid white;
+  width: 8px;
+  padding: 4px;
+  height: 8px;
+}
+.hero-swiper .swiper-pagination-bullet-active {
+  background: #d40f0f !important;
+  width: 7px;
+  border-radius: 9999px;
+}
+
+.products-swiper .swiper-slide {
+  height: auto !important;
+}
+.products-swiper .swiper-wrapper {
+  align-items: stretch;
+}
