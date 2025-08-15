@@ -1,5 +1,5 @@
 import { useEffect } from "react";
-import { useCountdown } from "../hooks/useCountdown";
+import { useCountdown } from "../hooks";
 import { cn } from "../utils/cn";
 
 type CountdownTimerProps = {
@@ -33,7 +33,7 @@ export default function CountdownTimer({
     variant === "circle" && "flex gap-5 justify-center items-center",
     variant === "flashSale" && "flex flex-col gap-1",
     variant === "default" &&
-      "flex gap-5 items-center justify-center text-center",
+    "flex gap-5 items-center justify-center text-center",
     className
   );
 
@@ -70,7 +70,7 @@ export default function CountdownTimer({
         className={cn(
           "flex flex-col items-center",
           variant === "circle" &&
-            "bg-white w-20 h-20 rounded-full shadow justify-center"
+          "bg-white w-20 h-20 rounded-full shadow justify-center"
         )}
       >
         {variant === "flashSale" ? (

@@ -6,7 +6,7 @@ import Thambnail from "../components/Thambnail";
 import { useLocation } from "react-router";
 import type { ProductCard } from "../types/productCard";
 
-export default function ProductDetails() {
+export function ProductDetails() {
   const { state } = useLocation();
   const product: ProductCard | undefined = state?.product as
     | ProductCard

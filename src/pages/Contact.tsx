@@ -3,7 +3,7 @@ import { LuPhone } from "react-icons/lu";
 import Input from "../components/Input";
 import Button from "../components/Button";
 
-export default function Contact() {
+export function Contact() {
   return (
     <main className="flex gap-4 justify-center mt-20 page-container">
       <div className="flex flex-col p-6 gap-4 w-80 shrink-0 shadow-md">

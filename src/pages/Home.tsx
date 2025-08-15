@@ -8,7 +8,7 @@ import PromoBanner from "../components/PromoBanner.tsx";
 import ExploreProducts from "../components/ExploreProducts.tsx";
 import BenefitsRow from "../components/BenefitsRow.tsx";
 
-function Home() {
+export function Home() {
   return (
     <>
       <div className="page-container mt-2 flex items-start gap-6">
@@ -37,4 +37,3 @@ function Home() {
   );
 }
 
-export default Home;

@@ -3,7 +3,7 @@ import singup from "../assets/signup.avif";
 import Button from "../components/Button";
 import Input from "../components/Input";
 
-export default function SingUp() {
+export function SignUp() {
   return (
     <section className="page-container flex justify-center items-center mt-20 gap-20 mx-auto">
       <div>
