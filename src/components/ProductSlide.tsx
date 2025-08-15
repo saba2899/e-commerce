@@ -28,7 +28,6 @@ export default function ProductSlide<T>({
   className,
 }: ProductSlideProps<T>) {
   const swiperRef = useRef<SwiperType | null>(null);
-  console.log("hii");
 
   return (
     <section className={cn("mt-5", className)}>
@@ -54,8 +53,8 @@ export default function ProductSlide<T>({
         {children
           ? children
           : items && renderItem
-          ? items.map((item, idx) => renderItem(item, idx))
-          : null}
+            ? items.map((item, idx) => renderItem(item, idx))
+            : null}
       </Swiper>
     </section>
   );

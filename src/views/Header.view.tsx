@@ -1,9 +1,9 @@
 import { useState } from "react";
-import Logo from "./Logo";
-import NavLinks from "./NavLinks";
-import SearchBar from "./SearchBar";
-import FavouriteButton from "./FavouriteButton";
-import CartButton from "./CartButton";
+import Logo from "../components/Logo";
+import NavLinks from "../components/NavLinks";
+import SearchBar from "../components/SearchBar";
+import FavouriteButton from "../components/FavouriteButton";
+import CartButton from "../components/CartButton";
 import { CiMenuBurger } from "react-icons/ci";
 
 export default function Header() {
