@@ -1,7 +1,7 @@
 import { useState } from "react";
 import { CiSearch } from "react-icons/ci";
 
-function SearchBar() {
+export function SearchBar() {
   const [query, setQuery] = useState("");
 
   return (
@@ -34,4 +34,3 @@ function SearchBar() {
   );
 }
 
-export default SearchBar;

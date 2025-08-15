@@ -8,7 +8,7 @@ type ArrowProps = {
   swiperRef: React.RefObject<SwiperType | null>;
 };
 
-export default function Arrow({ swiperRef }: ArrowProps) {
+export function Arrow({ swiperRef }: ArrowProps) {
   return (
     <div className="flex items-center gap-3">
       <button

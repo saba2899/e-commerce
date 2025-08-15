@@ -1,6 +1,6 @@
 import girls from "../assets/girls.jpg";
 
-export default function BrandStory() {
+export function BrandStory() {
   return (
     <div className="page-container flex items-center gap-20 justify-center m-auto mt-30">
       <div className="flex flex-col gap-3 w-118">

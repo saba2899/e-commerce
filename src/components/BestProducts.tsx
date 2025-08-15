@@ -1,12 +1,12 @@
 import { SwiperSlide } from "swiper/react";
 import { BEST_PRODUCTS_MOCK } from "../MOCK/BEST_CARD_MOCK";
-import ProductSlide from "./ProductSlide";
-import SectionTitle from "./SectionTitle";
-import Tag from "./Tag";
-import Card from "./Card";
-import Button from "./Button";
+import { ProductSlide } from "./ProductSlide";
+import { SectionTitle } from "./SectionTitle";
+import { Tag } from "./Tag";
+import { Card } from "./Card";
+import { Button } from "./Button";
 
-export default function BestProducts() {
+export function BestProducts() {
   return (
     <div className="flex flex-col gap-4 mt-20 page-container">
       <div className="flex items-center justify-between">

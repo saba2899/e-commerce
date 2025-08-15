@@ -21,7 +21,7 @@ const NAV: Item[] = [
   },
 ];
 
-export default function NavLinks({
+export function NavLinks({
   vertical = false,
   onNavigate,
 }: {

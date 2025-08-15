@@ -4,7 +4,7 @@ import type { SwiperProps } from "swiper/react";
 import { A11y } from "swiper/modules";
 import { useRef } from "react";
 import { cn } from "../utils/cn";
-import Arrow from "./Arrow";
+import { Arrow } from "./Arrow";
 
 import "swiper/css";
 
@@ -18,7 +18,7 @@ type ProductSlideProps<T> = {
   className?: string;
 };
 
-export default function ProductSlide<T>({
+export function ProductSlide<T>({
   items,
   renderItem,
   children,

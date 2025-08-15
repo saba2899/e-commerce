@@ -6,7 +6,7 @@ type TagProps = {
   className?: string;
 };
 
-export default function Tag({
+export function Tag({
   children,
   variant = "red",
   size = "md",
@@ -18,15 +18,15 @@ export default function Tag({
     variant === "red"
       ? "text-red-600"
       : variant === "green"
-      ? "text-green-600"
-      : "text-gray-600";
+        ? "text-green-600"
+        : "text-gray-600";
 
   const dot =
     variant === "red"
       ? "bg-red-600"
       : variant === "green"
-      ? "bg-green-600"
-      : "bg-gray-400";
+        ? "bg-green-600"
+        : "bg-gray-400";
   const height = size === "sm" ? "h-8 w-4" : "h-10 w-4";
 
   return (

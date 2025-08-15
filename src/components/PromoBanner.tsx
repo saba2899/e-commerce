@@ -1,7 +1,7 @@
-import Button from "./Button";
-import CountdownTimer from "./CountdownTimer";
+import { Button } from "./Button";
+import { CountdownTimer } from "./CountdownTimer";
 
-export default function PromoBanner() {
+export function PromoBanner() {
   return (
     <div className="mt-30">
       <div className="flex items-center  m-auto bg-black w-6xl h-120">

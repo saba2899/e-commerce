@@ -1,8 +1,9 @@
 import type { ProductCard } from "../types/productCard";
-import StarRating from "./StarRating";
+import { StarRating } from "./StarRating";
 import { useMemo, useState } from "react";
 
-export default function Thambnail({ product }: { product?: ProductCard }) {
+//TODO:
+export function Thumbnail({ product }: { product?: ProductCard }) {
   const images = useMemo<string[]>(() => {
     if (!product?.image) return new Array(4).fill("");
     return [product.image, product.image, product.image, product.image];
@@ -38,11 +39,10 @@ export default function Thambnail({ product }: { product?: ProductCard }) {
               key={i}
               type="button"
               onClick={() => setSelectedImageIdx(i)}
-              className={`h-24 w-24 rounded-md bg-gray-100 grid place-items-center ring-1 ring-black/5 ${
-                selectedImageIdx === i
-                  ? "outline outline-2 outline-black/20"
-                  : ""
-              }`}
+              className={`h-24 w-24 rounded-md bg-gray-100 grid place-items-center ring-1 ring-black/5 ${selectedImageIdx === i
+                ? "outline outline-2 outline-black/20"
+                : ""
+                }`}
               aria-label={`Select image ${i + 1}`}
             >
               {src ? (
@@ -106,9 +106,8 @@ export default function Thambnail({ product }: { product?: ProductCard }) {
                   key={c}
                   aria-label={`Choose color ${c}`}
                   onClick={() => setSelectedColor(c)}
-                  className={`h-5 w-5 rounded-full ring-1 ${
-                    selectedColor === c ? "ring-black" : "ring-gray-300"
-                  }`}
+                  className={`h-5 w-5 rounded-full ring-1 ${selectedColor === c ? "ring-black" : "ring-gray-300"
+                    }`}
                   style={{ backgroundColor: c }}
                 />
               ))}
@@ -133,11 +132,10 @@ export default function Thambnail({ product }: { product?: ProductCard }) {
                 key={s}
                 type="button"
                 onClick={() => setSelectedSize(s)}
-                className={`h-8 w-8 grid place-items-center text-sm rounded border transition ${
-                  selectedSize === s
-                    ? "bg-black text-white border-black"
-                    : "hover:bg-black hover:text-white"
-                }`}
+                className={`h-8 w-8 grid place-items-center text-sm rounded border transition ${selectedSize === s
+                  ? "bg-black text-white border-black"
+                  : "hover:bg-black hover:text-white"
+                  }`}
               >
                 {s}
               </button>

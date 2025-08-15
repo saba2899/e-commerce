@@ -6,7 +6,7 @@ type ButtonProps = {
   className?: string;
 };
 
-export default function Button({ children, className }: ButtonProps) {
+export function Button({ children, className }: ButtonProps) {
   return (
     <button
       className={clsx(

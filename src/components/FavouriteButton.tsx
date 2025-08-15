@@ -1,6 +1,6 @@
 import { CiHeart } from "react-icons/ci";
 
-export default function FavouriteButton() {
+export function FavouriteButton() {
   return (
     <button
       type="button"

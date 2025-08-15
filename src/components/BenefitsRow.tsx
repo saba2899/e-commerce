@@ -24,7 +24,7 @@ function FeatureItem({ icon, title, subtitle }: FeatureItemProps) {
   );
 }
 
-export default function BenefitsRow() {
+export function BenefitsRow() {
   return (
     <section className="page-container mt-24">
       <div className="grid grid-cols-1 sm:grid-cols-3 gap-10 sm:gap-6 place-items-center">

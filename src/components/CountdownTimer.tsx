@@ -9,7 +9,7 @@ type CountdownTimerProps = {
   onComplete?: () => void;
 };
 
-export default function CountdownTimer({
+export function CountdownTimer({
   targetDate,
   variant = "default",
   onComplete,

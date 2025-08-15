@@ -1,9 +1,9 @@
 import { Pagination } from "swiper/modules";
 import { Swiper, SwiperSlide } from "swiper/react";
 import { TEAM_MEMBERS_MOCK } from "../MOCK/TEAM_MEMBERS";
-import TeamCard from "./TeamCard";
+import { TeamCard } from "./TeamCard";
 
-export default function TeamMembers() {
+export function TeamMembers() {
   return (
     <section className="page-container  w-full  mt-10 px-4 ">
       <div>

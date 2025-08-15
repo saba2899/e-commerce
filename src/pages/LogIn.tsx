@@ -1,6 +1,5 @@
 import singup from "../assets/signup.avif";
-import Button from "../components/Button";
-import Input from "../components/Input";
+import { Input, Button } from "../components";
 
 export function LogIn() {
   return (

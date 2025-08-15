@@ -1,12 +1,4 @@
-import Button from "../components/Button.tsx";
-import Category from "../components/Category.tsx";
-import SideNav from "../components/SideNav.tsx";
-import Slider from "../components/Slider";
-import BestProducts from "../components/BestProducts.tsx";
-import SalesCard from "../components/SalesCard.tsx";
-import PromoBanner from "../components/PromoBanner.tsx";
-import ExploreProducts from "../components/ExploreProducts.tsx";
-import BenefitsRow from "../components/BenefitsRow.tsx";
+import { SideNav, Slider, SalesCard, Button, Category, BestProducts, PromoBanner, ExploreProducts, BenefitsRow } from "../components";
 
 export function Home() {
   return (

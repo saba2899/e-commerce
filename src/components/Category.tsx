@@ -1,8 +1,8 @@
-import CategoriesDiv from "./CategoriesDiv";
-import SectionTitle from "./SectionTitle";
-import Tag from "./Tag";
+import { CategoriesDiv } from "./CategoriesDiv";
+import { SectionTitle } from "./SectionTitle";
+import { Tag } from "./Tag";
 
-export default function Category() {
+export function Category() {
   return (
     <div className="flex flex-col gap-4 mt-24 page-container">
       <Tag>Categories</Tag>

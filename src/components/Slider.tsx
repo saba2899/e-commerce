@@ -12,7 +12,7 @@ import product5 from "../assets/product5.webp";
 
 const slides = [product1, product2, product3, product4, product5];
 
-export default function Slider() {
+export function Slider() {
   return (
     <Swiper
       modules={[Autoplay, Pagination, A11y, Keyboard]}

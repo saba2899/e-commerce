@@ -7,7 +7,7 @@ type TeamCardProps = {
   card: TeamMembersProps;
 };
 
-export default function TeamCard({ card }: TeamCardProps) {
+export function TeamCard({ card }: TeamCardProps) {
   return (
     <article className="page-container flex flex-col justify-center  w-[280px] max-w-full ">
       <div>

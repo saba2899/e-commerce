@@ -1,5 +1,5 @@
 import { CiShoppingCart } from "react-icons/ci";
-export default function CartButton({ count = 0 }: { count?: number }) {
+export function CartButton({ count = 0 }: { count?: number }) {
   return (
     <button
       type="button"

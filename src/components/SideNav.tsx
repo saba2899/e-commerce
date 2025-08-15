@@ -1,7 +1,7 @@
 import { CATEGORIES_MOCK } from "../MOCK/CATEGORIES_MOCK";
 import { BiChevronRight } from "react-icons/bi";
 
-export default function SideNav() {
+export function SideNav() {
   return (
     <aside className="hidden lg:block w-64 shrink-0">
       <nav

@@ -5,9 +5,9 @@ import { BsSmartwatch } from "react-icons/bs";
 import { CiCamera } from "react-icons/ci";
 import { CiHeadphones } from "react-icons/ci";
 import { MdOutlineVideogameAsset } from "react-icons/md";
-import Container from "./Container";
+import { Container } from "./Container";
 
-export default function CategoriesDiv() {
+export function CategoriesDiv() {
   return (
     <div className="flex gap-5 mt-10">
       <Container>

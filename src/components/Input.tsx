@@ -6,7 +6,7 @@ type InputProps = {
   className?: string;
 };
 
-export default function Input({
+export function Input({
   name,
   placeholder,
   type,

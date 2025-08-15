@@ -1,10 +1,10 @@
 import { AiOutlineShop } from "react-icons/ai";
-import Container from "./Container";
+import { Container } from "./Container";
 import { PiCurrencyCircleDollar } from "react-icons/pi";
 import { BiShoppingBag } from "react-icons/bi";
 import { CiDollar } from "react-icons/ci";
 
-export default function StatTile() {
+export function StatTile() {
   return (
     <div className="page-container flex gap-3 mt-20 justify-center">
       <Container>

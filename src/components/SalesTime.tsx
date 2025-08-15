@@ -1,9 +1,9 @@
 // src/components/SalesTime.tsx
-import CountdownTimer from "./CountdownTimer";
-import SectionTitle from "./SectionTitle";
-import Tag from "./Tag";
+import { CountdownTimer } from "./CountdownTimer";
+import { SectionTitle } from "./SectionTitle";
+import { Tag } from "./Tag";
 
-export default function SalesTime() {
+export function SalesTime() {
   return (
     <div className="flex flex-col gap-4">
       <Tag>Today’s</Tag>

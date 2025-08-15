@@ -1,5 +1,5 @@
 import type { ProductCard } from "../types/productCard";
-import StarRating from "./StarRating";
+import { StarRating } from "./StarRating";
 import { cn } from "../utils/cn";
 import { CiHeart } from "react-icons/ci";
 import { IoEyeOutline } from "react-icons/io5";
@@ -14,7 +14,7 @@ type CardProps = {
   variant?: "default" | "compact";
   className?: string;
 };
-export default function Card({
+export function Card({
   product,
   onAddToCart,
   showRating = true,

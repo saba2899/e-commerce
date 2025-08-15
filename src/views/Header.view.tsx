@@ -1,10 +1,8 @@
 import { useState } from "react";
-import Logo from "../components/Logo";
-import NavLinks from "../components/NavLinks";
-import SearchBar from "../components/SearchBar";
-import FavouriteButton from "../components/FavouriteButton";
-import CartButton from "../components/CartButton";
+
 import { CiMenuBurger } from "react-icons/ci";
+
+import { Logo, NavLinks, SearchBar, FavouriteButton, CartButton } from "../components";
 
 export default function Header() {
   const [menuOpen, setMenuOpen] = useState(false);

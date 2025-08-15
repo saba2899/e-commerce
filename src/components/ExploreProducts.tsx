@@ -1,10 +1,10 @@
 import { SwiperSlide } from "swiper/react";
-import ProductSlide from "./ProductSlide";
-import Card from "./Card";
+import { ProductSlide } from "./ProductSlide";
+import { Card } from "./Card";
 import { EXPLORE_PRODUCTS_MOCK } from "../MOCK/EXPLORE_MOCK";
-import ExploreTitle from "./ExploreTitle";
+import { ExploreTitle } from "./ExploreTitle";
 
-export default function ExploreProducts() {
+export function ExploreProducts() {
   return (
     <div className="flex flex-col gap-4 mt-20 page-container">
       <ExploreTitle />

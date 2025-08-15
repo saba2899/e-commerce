@@ -1,4 +1,4 @@
-function Logo() {
+export function Logo() {
   return (
     <a href="/" className="block font-bold text-2xl tracking-tight">
       Exclusive
@@ -6,4 +6,4 @@ function Logo() {
   );
 }
 
-export default Logo;
+

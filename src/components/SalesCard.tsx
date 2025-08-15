@@ -1,11 +1,11 @@
 // src/components/SalesCard.tsx
 import { SwiperSlide } from "swiper/react";
-import ProductSlide from "./ProductSlide";
+import { ProductSlide } from "./ProductSlide";
 import { PRODUCTS_MOCK } from "../MOCK/PRODUCTS_MOCK";
-import Card from "./Card";
-import SalesTime from "./SalesTime";
+import { Card } from "./Card";
+import { SalesTime } from "./SalesTime";
 
-export default function SalesCard() {
+export function SalesCard() {
   return (
     <ProductSlide
       className="page-container"
