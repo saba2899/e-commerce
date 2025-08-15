@@ -1,7 +1,10 @@
-import { CATEGORIES_MOCK } from "../MOCK/CATEGORIES_MOCK";
+import { type CategoryItem } from "../MOCK/CATEGORIES_MOCK";
 import { BiChevronRight } from "react-icons/bi";
 
-export function SideNav() {
+export type SideNavProps = {
+  list: CategoryItem[],
+}
+export function SideNav({ list }: SideNavProps) {
   return (
     <aside className="hidden lg:block w-64 shrink-0">
       <nav
@@ -9,7 +12,7 @@ export function SideNav() {
         className="min-h-[360px] border-r pr-6"
       >
         <ul className="flex flex-col">
-          {CATEGORIES_MOCK.map(({ label, href, hasChildren }) => (
+          {list.map(({ label, href, hasChildren }) => (
             <li key={label}>
               <a
                 href={href}

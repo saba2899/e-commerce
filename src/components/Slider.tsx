@@ -1,18 +1,16 @@
 import { Swiper, SwiperSlide } from "swiper/react";
+
 import { Autoplay, Pagination, A11y, Keyboard } from "swiper/modules";
+
 import "swiper/css";
 import "swiper/css/pagination";
 import "swiper/css/navigation";
 
-import product1 from "../assets/product1.webp";
-import product2 from "../assets/product2.webp";
-import product3 from "../assets/product3.webp";
-import product4 from "../assets/product4.webp";
-import product5 from "../assets/product5.webp";
 
-const slides = [product1, product2, product3, product4, product5];
-
-export function Slider() {
+export type SliderProps = {
+  list: string[],
+}
+export function Slider({ list }: SliderProps) {
   return (
     <Swiper
       modules={[Autoplay, Pagination, A11y, Keyboard]}
@@ -28,7 +26,7 @@ export function Slider() {
       aria-roledescription="carousel"
       aria-label="Promotions"
     >
-      {slides.map((src, i) => (
+      {list.map((src, i) => (
         <SwiperSlide key={i}>
           <div className="relative overflow-hidden rounded-md h-[260px] sm:h-[320px] lg:h-[380px]">
             <img
