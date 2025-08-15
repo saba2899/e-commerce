@@ -1,5 +1,5 @@
 import { SwiperSlide } from "swiper/react";
-import { BEST_PRODUCTS_MOCK } from "../data/bestCard";
+import { BEST_PRODUCTS_MOCK } from "../MOCK/BEST_CARD_MOCK";
 import ProductSlide from "./ProductSlide";
 import SectionTitle from "./SectionTitle";
 import Tag from "./Tag";

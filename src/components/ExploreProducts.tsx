@@ -1,7 +1,7 @@
 import { SwiperSlide } from "swiper/react";
 import ProductSlide from "./ProductSlide";
 import Card from "./Card";
-import { EXPLORE_PRODUCTS_MOCK } from "../data/Explore";
+import { EXPLORE_PRODUCTS_MOCK } from "../MOCK/EXPLORE_MOCK";
 import ExploreTitle from "./ExploreTitle";
 
 export default function ExploreProducts() {

@@ -1,4 +1,4 @@
-import { CATEGORIES } from "../data/categories";
+import { CATEGORIES_MOCK } from "../MOCK/CATEGORIES_MOCK";
 import { BiChevronRight } from "react-icons/bi";
 
 export default function SideNav() {
@@ -9,7 +9,7 @@ export default function SideNav() {
         className="min-h-[360px] border-r pr-6"
       >
         <ul className="flex flex-col">
-          {CATEGORIES.map(({ label, href, hasChildren }) => (
+          {CATEGORIES_MOCK.map(({ label, href, hasChildren }) => (
             <li key={label}>
               <a
                 href={href}

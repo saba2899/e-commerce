@@ -1,7 +1,7 @@
 import { SwiperSlide } from "swiper/react";
 import Card from "../components/Card";
 import ProductSlide from "../components/ProductSlide";
-import { BEST_PRODUCTS_MOCK } from "../data/bestCard";
+import { BEST_PRODUCTS_MOCK } from "../MOCK/BEST_CARD_MOCK";
 import Thambnail from "../components/Thambnail";
 import { useLocation } from "react-router";
 import type { ProductCard } from "../types/productCard";

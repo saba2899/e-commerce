@@ -1,5 +1,5 @@
 import { FiTwitter } from "react-icons/fi";
-import type { TeamMembersProps } from "../data/TeamMembers";
+import type { TeamMembersProps } from "../MOCK/TEAM_MEMBERS";
 import { FaInstagram } from "react-icons/fa";
 import { GrLinkedinOption } from "react-icons/gr";
 

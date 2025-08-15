@@ -8,7 +8,7 @@ export type TeamMembersProps = {
   position: string;
 };
 
-export const TEAMMEMBERS: TeamMembersProps[] = [
+export const TEAM_MEMBERS_MOCK: TeamMembersProps[] = [
   {
     id: 1,
     image: "src/assets/members/founder.jpg",

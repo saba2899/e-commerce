@@ -1,6 +1,6 @@
 import { Pagination } from "swiper/modules";
 import { Swiper, SwiperSlide } from "swiper/react";
-import { TEAMMEMBERS } from "../data/TeamMembers";
+import { TEAM_MEMBERS_MOCK } from "../MOCK/TEAM_MEMBERS";
 import TeamCard from "./TeamCard";
 
 export default function TeamMembers() {
@@ -20,7 +20,7 @@ export default function TeamMembers() {
             1024: { slidesPerView: 3, spaceBetween: 24 },
           }}
         >
-          {TEAMMEMBERS.map((m) => (
+          {TEAM_MEMBERS_MOCK.map((m) => (
             <SwiperSlide key={m.id} className="mb-20">
               <TeamCard card={m} />
             </SwiperSlide>

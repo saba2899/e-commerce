@@ -4,7 +4,7 @@ export type CategoryItem = {
   hasChildren?: boolean;
 };
 
-export const CATEGORIES: CategoryItem[] = [
+export const CATEGORIES_MOCK: CategoryItem[] = [
   { label: "Woman's Fashion", href: "#", hasChildren: true },
   { label: "Man's Fashion", href: "#", hasChildren: true },
   { label: "Electronics", href: "#" },
