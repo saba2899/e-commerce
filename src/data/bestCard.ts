@@ -9,6 +9,8 @@ export const BEST_PRODUCTS_MOCK: ProductCard[] = [
     newPrice: 260,
     rating: 5,
     reviews: 88,
+    isNew: false,
+    colors: ["#2F4F4F", "#000000", "#8B4513"],
     description:
       "Insulated north-style coat built for harsh winters with a windproof shell and soft lining for everyday warmth.",
   },
@@ -20,6 +22,8 @@ export const BEST_PRODUCTS_MOCK: ProductCard[] = [
     newPrice: 960,
     rating: 4,
     reviews: 75,
+    isNew: false,
+    colors: ["#8B4513", "#000000"],
     description:
       "Premium duffle bag inspired by Gucci aesthetics—roomy main compartment and durable finish for travel or gym.",
   },
@@ -31,6 +35,8 @@ export const BEST_PRODUCTS_MOCK: ProductCard[] = [
     newPrice: 160,
     rating: 5,
     reviews: 99,
+    isNew: false,
+    colors: ["#000000", "#FF0000", "#00FF00", "#0000FF"],
     description:
       "All-in-one RGB liquid cooler that keeps your CPU stable and quiet under heavy loads.",
   },
@@ -42,6 +48,8 @@ export const BEST_PRODUCTS_MOCK: ProductCard[] = [
     newPrice: 260,
     rating: 4.5,
     reviews: 99,
+    isNew: false,
+    colors: ["#8B4513", "#000000"],
     description:
       "Compact, minimalist bookshelf for organizing and displaying your favorite reads and décor.",
   },

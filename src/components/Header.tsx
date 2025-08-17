@@ -5,12 +5,15 @@ import SearchBar from "./SearchBar";
 import FavouriteButton from "./FavouriteButton";
 import CartButton from "./CartButton";
 import { CiMenuBurger } from "react-icons/ci";
+import AccountIcon from "./AccountIcon";
+import { useUser } from "../hooks/useUser";
 
 export default function Header() {
   const [menuOpen, setMenuOpen] = useState(false);
+  const { user } = useUser();
 
   return (
-    <header className="sticky top-0 z-1000 bg-white/90 backdrop-blur supports-[backdrop-filter]:bg-white/70 border-b">
+    <header className="sticky top-0 z-1000 bg-white/90 backdrop-blur border-b">
       <div className="page-container flex items-center justify-between gap-4 py-3 md:py-4">
         <div className="flex items-center gap-3">
           <button
@@ -25,7 +28,7 @@ export default function Header() {
         </div>
 
         <nav className="hidden lg:block">
-          <NavLinks />
+          <NavLinks user={user} />
         </nav>
 
         <div className="flex items-center gap-3 md:gap-4">
@@ -33,15 +36,19 @@ export default function Header() {
           <div className="flex items-center gap-2">
             <FavouriteButton />
             <CartButton />
+            {user && <AccountIcon />}
           </div>
         </div>
       </div>
 
-      {/* Mobile drawer (simple collapse) */}
       {menuOpen && (
         <div className="lg:hidden border-t bg-white">
           <div className="page-container py-3">
-            <NavLinks vertical onNavigate={() => setMenuOpen(false)} />
+            <NavLinks
+              user={user}
+              vertical
+              onNavigate={() => setMenuOpen(false)}
+            />
           </div>
         </div>
       )}

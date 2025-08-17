@@ -1,23 +1,23 @@
-type InputProps = {
-  children?: React.ReactNode;
-  name: string;
-  type: string;
-  placeholder: string;
+import clsx from "clsx";
+import React, { forwardRef } from "react";
+
+export type InputProps = React.InputHTMLAttributes<HTMLInputElement> & {
   className?: string;
 };
 
-export default function Input({
-  name,
-  placeholder,
-  type,
-  className,
-}: InputProps) {
-  return (
-    <input
-      type={type}
-      name={name}
-      placeholder={placeholder}
-      className={className}
-    />
-  );
-}
+const Input = forwardRef<HTMLInputElement, InputProps>(
+  ({ className, ...props }, ref) => {
+    return (
+      <input
+        ref={ref}
+        className={clsx(
+          "w=full border-b pb-1 pr-3 pt-3 outline-none",
+          className
+        )}
+        {...props}
+      />
+    );
+  }
+);
+
+export default Input;

@@ -1,18 +1,15 @@
 import clsx from "clsx";
-import type { ReactNode } from "react";
+import React from "react";
 
-type ButtonProps = {
-  children: ReactNode;
+type ButtonProps = React.ButtonHTMLAttributes<HTMLButtonElement> & {
   className?: string;
 };
 
-export default function Button({ children, className }: ButtonProps) {
+export default function Button({ children, className, ...props }: ButtonProps) {
   return (
     <button
-      className={clsx(
-        className && className,
-        "p-5 text-center cursor-pointer rounded-md "
-      )}
+      className={clsx("p-3 text-center cursor-pointer rounded-md", className)}
+      {...props}
     >
       {children}
     </button>
