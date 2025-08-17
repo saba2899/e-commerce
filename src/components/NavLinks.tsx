@@ -7,7 +7,7 @@ const NAV: Item[] = [
   { label: "Home", route: "/" },
   { label: "Contact", route: "/contact" },
   { label: "About", route: "/about" },
-  { label: "Sign up", route: "/singup" },
+  { label: "Sign up", route: "/signup" },
 ];
 
 export default function NavLinks({
