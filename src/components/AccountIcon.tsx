@@ -10,11 +10,10 @@ import { logOut } from "../services/auth";
 import { useUser } from "../hooks/useUser";
 
 export default function AccountIcon() {
-  const { setUser } = useUser();
+  const { user, setUser } = useUser();
   const [open, setOpen] = useState(false);
   const ref = useRef<HTMLDivElement>(null);
 
-  // Close dropdown when clicking outside
   useEffect(() => {
     function handleClickOutside(e: MouseEvent) {
       if (ref.current && !ref.current.contains(e.target as Node)) {
@@ -43,13 +42,17 @@ export default function AccountIcon() {
 
       {open && (
         <div className="absolute right-0 mt-2 w-56 bg-white border border-gray-200 shadow-lg rounded-lg z-50 overflow-hidden">
-          {/* User info section */}
           <div className="px-4 py-3 border-b border-gray-100 bg-gray-50">
-            <p className="text-sm font-medium text-gray-900">Account</p>
-            <p className="text-xs text-gray-500">Manage your account</p>
+            <p className="text-sm font-medium text-gray-900">
+              {user?.name
+                ? user?.name.charAt(0).toLocaleUpperCase() + user?.name.slice(1)
+                : user?.email || "Account"}
+            </p>
+            <p className="text-xs text-gray-500">
+              {user?.email || "Manage your account"}
+            </p>
           </div>
 
-          {/* Menu items */}
           <div className="py-2">
             <button
               onClick={() => setOpen(false)}
@@ -84,10 +87,8 @@ export default function AccountIcon() {
             </button>
           </div>
 
-          {/* Divider */}
           <div className="border-t border-gray-100"></div>
 
-          {/* Logout button */}
           <div className="py-2">
             <button
               onClick={handleLogOut}

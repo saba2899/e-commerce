@@ -13,7 +13,7 @@ export default function Thambnail({ product }: { product?: ProductCard }) {
   const [selectedColor, setSelectedColor] = useState<string | undefined>(
     product?.colors?.[0]
   );
-  const [quantity, setQuantity] = useState<number>(2);
+  const [quantity, setQuantity] = useState<number>(1);
 
   const increase = () => setQuantity((q) => Math.min(q + 1, 99));
   const decrease = () => setQuantity((q) => Math.max(q - 1, 1));
