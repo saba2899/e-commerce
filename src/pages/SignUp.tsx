@@ -19,6 +19,28 @@ export default function SingUp() {
     e.preventDefault();
     setError(null);
 
+    // Validation regex
+    const nameRegex = /^[\p{L}][\p{L}'-]{1,}(?: [\p{L}'-]{2,})*$/u; // at least 2 letters, allows Unicode, hyphen, apostrophe; optional surname
+    const emailRegex = /^[^\s@]+@[^\s@]+\.[^\s@]{2,}$/i;
+    const passwordRegex = /^(?=.*[a-z])(?=.*[A-Z])(?=.*\d)(?=.*[^\w\s]).{8,}$/;
+
+    if (!nameRegex.test(name.trim())) {
+      setError(
+        "Name must be at least 2 letters; letters, spaces, '-' and ' allowed"
+      );
+      return;
+    }
+    if (!emailRegex.test(email.trim())) {
+      setError("Please enter a valid email address");
+      return;
+    }
+    if (!passwordRegex.test(password)) {
+      setError(
+        "Password must be at least 8 characters and include upper, lower, number, and symbol"
+      );
+      return;
+    }
+
     try {
       const user = await signUp(name, email, password);
       setUser(user);

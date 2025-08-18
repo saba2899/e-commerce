@@ -1,4 +1,9 @@
-export type PublicUser = { id: string; name: string; email: string };
+export type PublicUser = {
+  id: string;
+  name: string;
+  email: string;
+  address?: string;
+};
 type UserRecord = PublicUser & { passwordHash: string };
 
 const USERS_KEY = "demo_users";
@@ -25,6 +30,18 @@ export async function signUp(
   password: string
 ): Promise<PublicUser> {
   const users = readUsers();
+
+  // Basic server-side validations
+  const nameRegex = /^[\p{L}][\p{L}'-]{1,}(?: [\p{L}'-]{2,})*$/u;
+  const emailRegex = /^[^\s@]+@[^\s@]+\.[^\s@]{2,}$/i;
+  const passwordRegex = /^(?=.*[a-z])(?=.*[A-Z])(?=.*\d)(?=.*[^\w\s]).{8,}$/;
+
+  if (!nameRegex.test(name.trim())) throw new Error("სახელი არასწორია");
+  if (!emailRegex.test(email.trim())) throw new Error("ელფოსტა არასწორია");
+  if (!passwordRegex.test(password))
+    throw new Error(
+      "პაროლი უნდა შეიცავდეს დიდ და პატარა ასოებს, რიცხვს და სიმბოლოს და იყოს მინ. 8 სიმბოლო"
+    );
 
   const exists = users.some(
     (u) => u.email.toLowerCase() === email.toLowerCase()
@@ -53,6 +70,8 @@ export async function logIn(
   email: string,
   password: string
 ): Promise<PublicUser> {
+  const emailRegex = /^[^\s@]+@[^\s@]+\.[^\s@]{2,}$/i;
+  if (!emailRegex.test(email.trim())) throw new Error("ელფოსტა არასწორია");
   const users = readUsers();
   const hash = await sha256(password);
 
@@ -83,4 +102,69 @@ export function getCurrentUser(): PublicUser | null {
 
   const { ...pub } = u;
   return pub;
+}
+
+export async function changePassword(
+  userId: string,
+  currentPassword: string,
+  newPassword: string
+): Promise<void> {
+  const users = readUsers();
+  const user = users.find((u) => u.id === userId);
+  if (!user) throw new Error("User not found");
+
+  const currentHash = await sha256(currentPassword);
+  if (currentHash !== user.passwordHash)
+    throw new Error("Current password is incorrect");
+
+  user.passwordHash = await sha256(newPassword);
+  writeUsers(users);
+}
+
+export function updateNamePartsIfMissing(
+  userId: string,
+  parts: { firstName?: string; lastName?: string; address?: string }
+): PublicUser {
+  const users = readUsers();
+  const user = users.find((u) => u.id === userId);
+  if (!user) throw new Error("User not found");
+
+  const nameTokens = user.name.trim().split(/\s+/).filter(Boolean);
+  const currentFirst = nameTokens[0] ?? "";
+  const currentLast = nameTokens.slice(1).join(" ");
+
+  const requestedFirst = (parts.firstName ?? "").trim();
+  const requestedLast = (parts.lastName ?? "").trim();
+  const requestedAddress = (parts.address ?? "").trim();
+
+  if (requestedFirst && currentFirst)
+    throw new Error("First name is already set and cannot be changed");
+  if (requestedLast && currentLast)
+    throw new Error("Last name is already set and cannot be changed");
+
+  const newFirst = currentFirst || requestedFirst;
+  const newLast = currentLast || requestedLast;
+  const newName = [newFirst, newLast].filter(Boolean).join(" ");
+
+  if (requestedAddress && user.address)
+    throw new Error("Address is already set and cannot be changed");
+  const newAddress = user.address || requestedAddress || undefined;
+
+  let touched = false;
+  if (newName !== user.name) {
+    user.name = newName;
+    touched = true;
+  }
+  if (newAddress !== user.address) {
+    user.address = newAddress;
+    touched = true;
+  }
+  if (touched) writeUsers(users);
+
+  return {
+    id: user.id,
+    name: user.name,
+    email: user.email,
+    address: user.address,
+  };
 }

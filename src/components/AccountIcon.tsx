@@ -8,11 +8,15 @@ import {
 } from "react-icons/ci";
 import { logOut } from "../services/auth";
 import { useUser } from "../hooks/useUser";
+import { useNavigate, useLocation } from "react-router";
 
 export default function AccountIcon() {
   const { user, setUser } = useUser();
   const [open, setOpen] = useState(false);
   const ref = useRef<HTMLDivElement>(null);
+  const navigate = useNavigate();
+  const location = useLocation();
+  const isOnProfile = location.pathname.startsWith("/profile");
 
   useEffect(() => {
     function handleClickOutside(e: MouseEvent) {
@@ -28,6 +32,7 @@ export default function AccountIcon() {
     logOut();
     setUser(null);
     setOpen(false);
+    navigate("/");
   }
 
   return (
@@ -37,7 +42,14 @@ export default function AccountIcon() {
         className="p-2 rounded-md hover:bg-black/5 transition-colors"
         aria-label="Account menu"
       >
-        <CiUser size={22} />
+        <CiUser
+          size={22}
+          className={
+            isOnProfile
+              ? "bg-red-500 text-white font-semibold rounded-full"
+              : ""
+          }
+        />
       </button>
 
       {open && (
@@ -55,7 +67,10 @@ export default function AccountIcon() {
 
           <div className="py-2">
             <button
-              onClick={() => setOpen(false)}
+              onClick={() => {
+                setOpen(false);
+                navigate("/profile");
+              }}
               className="w-full flex items-center gap-3 px-4 py-2 text-sm text-gray-700 hover:bg-gray-100 transition-colors"
             >
               <CiUser size={18} />

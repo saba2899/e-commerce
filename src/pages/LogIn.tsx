@@ -19,6 +19,16 @@ export default function LogIn() {
     e.preventDefault();
     setError(null);
 
+    const emailRegex = /^[^\s@]+@[^\s@]+\.[^\s@]{2,}$/i;
+    if (!emailRegex.test(email.trim())) {
+      setError("Please enter a valid email address");
+      return;
+    }
+    if (!password) {
+      setError("Please enter your password");
+      return;
+    }
+
     try {
       const user = await logIn(email, password);
       setUser(user);

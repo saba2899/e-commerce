@@ -6,6 +6,8 @@ import About from "./pages/About";
 import SignUp from "./pages/SignUp";
 import LogIn from "./pages/LogIn";
 import ProductDetails from "./pages/ProductDetails";
+import Profile from "./pages/Profile";
+import RequireAuth from "./components/RequireAuth";
 
 export const router = createBrowserRouter([
   {
@@ -35,6 +37,14 @@ export const router = createBrowserRouter([
       {
         path: "/productdetails",
         element: <ProductDetails />,
+      },
+      {
+        path: "/profile",
+        element: (
+          <RequireAuth>
+            <Profile />
+          </RequireAuth>
+        ),
       },
     ],
   },
