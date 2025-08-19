@@ -4,54 +4,41 @@ import NavLinks from "./NavLinks";
 import SearchBar from "./SearchBar";
 import FavouriteButton from "./FavouriteButton";
 import CartButton from "./CartButton";
-import { CiMenuBurger } from "react-icons/ci";
+import MobileSidebar from "./MobileSidebar";
 import AccountIcon from "./AccountIcon";
 import { useUser } from "../hooks/useUser";
+import { Burger } from "./Burger";
 
 export default function Header() {
-  const [menuOpen, setMenuOpen] = useState(false);
+  const [open, setOpen] = useState(false);
   const { user } = useUser();
 
   return (
-    <header className="sticky top-0 z-1000 bg-white/90 backdrop-blur border-b">
-      <div className="page-container flex items-center justify-between gap-4 py-3 md:py-4">
-        <div className="flex items-center gap-3">
-          <button
-            type="button"
-            aria-label="Open menu"
-            className="lg:hidden p-2 rounded-md hover:bg-black/5"
-            onClick={() => setMenuOpen((v) => !v)}
-          >
-            <CiMenuBurger size={22} />
-          </button>
-          <Logo />
-        </div>
+    <>
+      <header className="sticky max-sm:w-full  top-0 z-[1000] bg-white/90 backdrop-blur border-b p-2">
+        <div className="flex items-center justify-between gap-4 py-4 page-container">
+          <div className="flex items-center gap-3">
+            <div className="md:hidden">
+              <Burger isOpen={open} onClick={() => setOpen((v) => !v)} />
+            </div>
 
-        <nav className="hidden lg:block">
-          <NavLinks user={user} />
-        </nav>
+            <Logo />
+          </div>
 
-        <div className="flex items-center gap-3 md:gap-4">
-          <SearchBar />
-          <div className="flex items-center gap-2">
+          <nav className="hidden lg:block">
+            <NavLinks user={user} />
+          </nav>
+
+          <div className="flex items-center gap-3 md:gap-4 max-sm:hidden">
+            <SearchBar />
             <FavouriteButton />
             <CartButton />
             {user && <AccountIcon />}
           </div>
         </div>
-      </div>
+      </header>
 
-      {menuOpen && (
-        <div className="lg:hidden border-t bg-white">
-          <div className="page-container py-3">
-            <NavLinks
-              user={user}
-              vertical
-              onNavigate={() => setMenuOpen(false)}
-            />
-          </div>
-        </div>
-      )}
-    </header>
+      <MobileSidebar isOpen={open} onClose={() => setOpen(false)} />
+    </>
   );
 }

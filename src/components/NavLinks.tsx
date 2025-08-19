@@ -28,7 +28,7 @@ export default function NavLinks({
           <NavLink
             to={item.route}
             className={({ isActive }) =>
-              isActive ? " underline font-semibold" : "header-link"
+              isActive ? "text-red-600 " : "text-gray-500 hover:text-red-600 "
             }
             onClick={onNavigate}
           >

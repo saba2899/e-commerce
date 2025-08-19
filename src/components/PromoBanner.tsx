@@ -3,7 +3,7 @@ import CountdownTimer from "./CountdownTimer";
 
 export default function PromoBanner() {
   return (
-    <div className="mt-30">
+    <div className="mt-30 max-sm:hidden">
       <div className="flex items-center  m-auto bg-black w-6xl h-120">
         <div className="flex flex-col gap-10 m-auto">
           <h1 className="text-green-500">Categories</h1>

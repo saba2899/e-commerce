@@ -10,8 +10,8 @@ import BenefitsRow from "../components/BenefitsRow.tsx";
 
 function Home() {
   return (
-    <>
-      <div className="page-container mt-2 flex items-start gap-6">
+    <div className="flex flex-col gap-15">
+      <div className="flex items-start gap-6 mt-2 page-container">
         <SideNav />
         <div className="min-w-8 ">
           <Slider />
@@ -19,7 +19,7 @@ function Home() {
       </div>
       <SalesCard />
       <div className="flex justify-center mt-10 page-container">
-        <Button className="w-70  bg-red-400 text-white hover:bg-red-500">
+        <Button className="text-white bg-red-400 w-70 hover:bg-red-500 max-sm:w-full">
           View All Products
         </Button>
       </div>
@@ -28,12 +28,12 @@ function Home() {
       <PromoBanner />
       <ExploreProducts />
       <div className="flex justify-center mt-10 page-container">
-        <Button className="w-70  bg-red-400 text-white hover:bg-red-500">
+        <Button className="text-white bg-red-400 w-70 hover:bg-red-500 max-sm:w-full">
           View All Products
         </Button>
       </div>
       <BenefitsRow />
-    </>
+    </div>
   );
 }
 

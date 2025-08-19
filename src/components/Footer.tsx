@@ -8,8 +8,8 @@ import { FiSend } from "react-icons/fi";
 
 export default function Footer() {
   return (
-    <footer className="mt-24 bg-black text-white">
-      <div className="page-container py-12 grid gap-10 md:grid-cols-5">
+    <footer className="mt-24 text-white bg-black pb-22">
+      <div className="grid gap-10 py-12 page-container md:grid-cols-5">
         <div>
           <h3 className="text-xl font-semibold">Exclusive</h3>
           <p className="mt-4 text-sm opacity-80">Subscribe</p>
@@ -21,12 +21,12 @@ export default function Footer() {
               <input
                 type="email"
                 placeholder="Enter your email"
-                className="w-full rounded-md border border-white/30 bg-transparent px-3 pr-10 py-2 text-white placeholder:text-white/60 focus:outline-none focus:ring-2 focus:ring-white/40"
+                className="w-full px-3 py-2 pr-10 text-white bg-transparent border rounded-md border-white/30 placeholder:text-white/60 focus:outline-none focus:ring-2 focus:ring-white/40"
               />
               <button
                 type="submit"
                 aria-label="Subscribe"
-                className="absolute right-1 top-1 grid h-8 w-8 place-items-center rounded-md  text-white hover:bg-gray-400"
+                className="absolute grid w-8 h-8 text-white rounded-md right-1 top-1 place-items-center hover:bg-gray-400"
               >
                 <FiSend size={16} />
               </button>
@@ -69,20 +69,20 @@ export default function Footer() {
           <p className="mt-4 text-xs opacity-80">
             Save $3 with App New User Only
           </p>
-          <div className="mt-3 flex items-center gap-3">
-            <div className="grid place-items-center w-16 h-16 rounded-md bg-white text-black text-xs font-semibold">
+          <div className="flex items-center gap-3 mt-3">
+            <div className="grid w-16 h-16 text-xs font-semibold text-black bg-white rounded-md place-items-center">
               QR
             </div>
             <div className="flex flex-col gap-2">
-              <button className="rounded-md bg-white/10 px-3 py-2 text-xs text-white">
+              <button className="px-3 py-2 text-xs text-white rounded-md bg-white/10">
                 Get it on Google Play
               </button>
-              <button className="rounded-md bg-white/10 px-3 py-2 text-xs text-white">
+              <button className="px-3 py-2 text-xs text-white rounded-md bg-white/10">
                 Download on the App Store
               </button>
             </div>
           </div>
-          <div className="mt-4 flex items-center gap-3 opacity-80">
+          <div className="flex items-center gap-3 mt-4 opacity-80">
             <a aria-label="Facebook" className="hover:opacity-100" href="#">
               <FaFacebookF />
             </a>
@@ -99,7 +99,7 @@ export default function Footer() {
         </div>
       </div>
       <div className="border-top border-white/10">
-        <div className="page-container py-4 text-center text-xs opacity-70">
+        <div className="py-4 text-xs text-center page-container opacity-70">
           © Copyright Rimel 2025. All rights reserved
         </div>
       </div>

@@ -16,8 +16,7 @@ export default function SalesCard() {
         const res = await fetch("https://fakestoreapi.com/products");
         const data: Product[] = await res.json();
         setItems(data.slice(0, 8));
-      } catch (e) {
-        console.error(e);
+      } catch {
         setItems([]);
       } finally {
         setLoading(false);

@@ -32,21 +32,23 @@ export default function LogIn() {
     try {
       const user = await logIn(email, password);
       setUser(user);
-      console.log("შესვლა წარმატებულია:", user);
       navigate("/");
     } catch (err) {
       if (err instanceof Error) {
         setError(err.message);
-      } else setError("უცნობი შეცდომა მოხდა");
+      } else setError("An unknown error occurred.");
     }
   }
 
   return (
     <section className="page-container flex justify-center items-center mt-20 gap-20 mx-auto">
-      <div>
+      <div className="max-sm:hidden">
         <img className="h-150 w-170" src={singup} alt={singup} />
       </div>
-      <form className="flex flex-col gap-5 " onSubmit={handleSubmit}>
+      <form
+        className="flex flex-col gap-5 max-sm:mt-15 "
+        onSubmit={handleSubmit}
+      >
         <h1 className="text-4xl">Log in to Exclusive</h1>
         <p className="text-sm">Enter your details below</p>
 

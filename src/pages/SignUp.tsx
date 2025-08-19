@@ -44,13 +44,12 @@ export default function SingUp() {
     try {
       const user = await signUp(name, email, password);
       setUser(user);
-      console.log("რეგისტრაცია წარმატებულია", user);
       navigate("/login");
     } catch (err) {
       if (err instanceof Error) {
         setError(err.message);
       } else {
-        setError("უცნობი შეცდომა მოხდა");
+        setError("An unknown error occurred.");
       }
     }
   }

@@ -1,0 +1,205 @@
+/* Responsive Design for All Devices - Alta Style */
+
+/* Safe area support for modern devices */
+.safe-area-pb {
+  padding-bottom: env(safe-area-inset-bottom);
+}
+
+.safe-area-pt {
+  padding-top: env(safe-area-inset-top);
+}
+
+/* Base mobile-first styles */
+
+/* iPhone X and newer (375px - 428px) */
+@media (max-width: 428px) {
+  .page-container {
+    width: 100%;
+    max-width: 1200px;
+    margin: 0 auto;
+    padding: 0 1rem;
+  }
+  .page-container {
+    padding: 0 0.75rem;
+  }
+
+  /* Product grid - 2 columns on small phones */
+  .product-grid {
+    display: grid;
+    grid-template-columns: repeat(2, 1fr);
+    gap: 0.75rem;
+  }
+
+  /* Header adjustments */
+  header .page-container {
+    padding: 0 1rem;
+  }
+
+  /* Bottom navigation spacing */
+  .bottom-nav-item {
+    min-width: 60px;
+  }
+}
+
+/* iPhone 12/13/14 Pro Max and similar (414px - 430px) */
+@media (min-width: 414px) and (max-width: 430px) {
+  .product-grid {
+    grid-template-columns: repeat(2, 1fr);
+    gap: 1rem;
+  }
+}
+
+/* Small tablets and large phones (431px - 768px) */
+@media (min-width: 431px) and (max-width: 768px) {
+  .page-container {
+    padding: 0 1.5rem;
+  }
+
+  .product-grid {
+    grid-template-columns: repeat(3, 1fr);
+    gap: 1rem;
+  }
+}
+
+/* Tablets (769px - 1024px) */
+@media (min-width: 769px) and (max-width: 1024px) {
+  .page-container {
+    padding: 0 2rem;
+  }
+
+  .product-grid {
+    grid-template-columns: repeat(4, 1fr);
+    gap: 1.5rem;
+  }
+
+  /* Hide bottom navigation on tablets */
+  .bottom-navigation {
+    display: none;
+  }
+}
+
+/* Desktop (1025px+) */
+@media (min-width: 1025px) {
+  .page-container {
+    padding: 0 2rem;
+  }
+
+  .product-grid {
+    grid-template-columns: repeat(5, 1fr);
+    gap: 2rem;
+  }
+
+  /* Hide bottom navigation on desktop */
+  .bottom-navigation {
+    display: none;
+  }
+}
+
+/* Specific device breakpoints */
+
+/* iPhone SE (375px) */
+@media (max-width: 375px) {
+  .page-container {
+    padding: 0 0.5rem;
+  }
+
+  .product-grid {
+    gap: 0.5rem;
+  }
+}
+
+/* iPhone 12 Mini (360px) */
+@media (max-width: 360px) {
+  .page-container {
+    padding: 0 0.5rem;
+  }
+
+  .bottom-nav-item span {
+    font-size: 0.625rem;
+  }
+}
+
+/* iPhone 14 Pro Max, 15 Pro Max, 16 Pro Max (430px) */
+@media (min-width: 428px) and (max-width: 430px) {
+  .product-grid {
+    grid-template-columns: repeat(2, 1fr);
+    gap: 1rem;
+  }
+}
+
+/* Landscape orientation adjustments */
+@media (orientation: landscape) and (max-height: 500px) {
+  /* Hide bottom navigation in landscape on small screens */
+  .bottom-navigation {
+    display: none;
+  }
+
+  main {
+    padding-bottom: 0 !important;
+  }
+}
+
+/* High DPI displays */
+@media (-webkit-min-device-pixel-ratio: 2), (min-resolution: 192dpi) {
+  /* Ensure crisp images on retina displays */
+  img {
+    image-rendering: -webkit-optimize-contrast;
+    image-rendering: crisp-edges;
+  }
+}
+
+/* Touch-friendly interactive elements */
+@media (hover: none) and (pointer: coarse) {
+  /* Increase touch targets on touch devices */
+  button,
+  a,
+  input,
+  select,
+  textarea {
+    min-height: 44px;
+    min-width: 44px;
+  }
+
+  /* Remove hover effects on touch devices */
+  .hover\:scale-105:hover {
+    transform: none;
+  }
+
+  .group:hover .group-hover\:opacity-100 {
+    opacity: 1;
+  }
+}
+
+/* Dark mode support */
+@media (prefers-color-scheme: dark) {
+  :root {
+    --bg-primary: #1f2937;
+    --bg-secondary: #374151;
+    --text-primary: #f9fafb;
+    --text-secondary: #d1d5db;
+  }
+}
+
+/* Reduced motion support */
+@media (prefers-reduced-motion: reduce) {
+  *,
+  *::before,
+  *::after {
+    animation-duration: 0.01ms !important;
+    animation-iteration-count: 1 !important;
+    transition-duration: 0.01ms !important;
+  }
+}
+
+/* Print styles */
+@media print {
+  .bottom-navigation,
+  header,
+  footer {
+    display: none;
+  }
+
+  main {
+    padding-bottom: 0 !important;
+  }
+}

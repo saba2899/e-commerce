@@ -18,7 +18,6 @@ export default function ProductDetails() {
       try {
         const res = await fetch("https://fakestoreapi.com/products");
         const data: Product[] = await res.json();
-        console.log(data);
         setRelated(data.slice(0, 8));
       } catch (e) {
         console.error(e);

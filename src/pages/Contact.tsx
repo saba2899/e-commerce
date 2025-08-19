@@ -5,7 +5,7 @@ import Button from "../components/Button";
 
 export default function Contact() {
   return (
-    <main className="flex gap-4 justify-center mt-20 page-container">
+    <main className="flex gap-4 justify-center mt-20 page-container items-center  max-sm:flex-col">
       <div className="flex flex-col p-6 gap-4 w-80 shrink-0 shadow-md">
         <div className=" flex flex-col gap-3 border-b pb-5">
           <div className="flex items-center gap-3">
@@ -29,8 +29,8 @@ export default function Contact() {
         </div>
       </div>
 
-      <div className="flex flex-col gap-5 w-auto shadow-md p-5">
-        <div className="flex gap-5">
+      <div className="flex flex-col gap-5 w-auto shadow-md p-5 max-sm:flex-col">
+        <div className="flex gap-5 max-sm:flex-col">
           <Input
             type="text"
             name="name"
