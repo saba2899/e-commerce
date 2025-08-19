@@ -10,10 +10,7 @@ const Input = forwardRef<HTMLInputElement, InputProps>(
     return (
       <input
         ref={ref}
-        className={clsx(
-          "w=full border-b pb-1 pr-3 pt-3 outline-none",
-          className
-        )}
+        className={clsx("w=full border-b pb-1 pr-3  outline-none", className)}
         {...props}
       />
     );

@@ -55,7 +55,6 @@ export default function LoginModal({ open, onClose }: LoginModalProps) {
     }
   }
 
-  // Render into a portal so it's not constrained by parent (e.g., header)
   return createPortal(
     <div
       className="fixed   inset-0 z-[2000] flex items-center justify-center p-4"
@@ -67,8 +66,8 @@ export default function LoginModal({ open, onClose }: LoginModalProps) {
         onClick={onClose}
         aria-hidden="true"
       />
-      <div className="relative z-10 w-full max-w-3xl max-h-[90vh] rounded-lg bg-white shadow-2xl overflow-hidden">
-        <div className="flex h-full flex-col md:flex-row items-stretch">
+      <div className="relative z-10 w-full max-w-3xl max-h-[90vh] pt-10 pb-10 rounded-lg bg-white shadow-2xl overflow-hidden">
+        <div className="flex h-full flex-col md:flex-row pl-2 pr-2 items-stretch">
           <div className="hidden md:flex md:w-1/2 bg-gray-50">
             <img
               src={singup}

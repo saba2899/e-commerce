@@ -1,8 +1,8 @@
-import type { ProductCard } from "../types/productCard";
+import type { Product } from "../types/productCard";
 import StarRating from "./StarRating";
 import { useMemo, useState } from "react";
 
-export default function Thambnail({ product }: { product?: ProductCard }) {
+export default function Thambnail({ product }: { product?: Product }) {
   const images = useMemo<string[]>(() => {
     if (!product?.image) return new Array(4).fill("");
     return [product.image, product.image, product.image, product.image];
@@ -10,9 +10,7 @@ export default function Thambnail({ product }: { product?: ProductCard }) {
 
   const [selectedImageIdx, setSelectedImageIdx] = useState<number>(0);
   const [selectedSize, setSelectedSize] = useState<string>("M");
-  const [selectedColor, setSelectedColor] = useState<string | undefined>(
-    product?.colors?.[0]
-  );
+  const [selectedColor] = useState<string | undefined>(undefined);
   const [quantity, setQuantity] = useState<number>(1);
 
   const increase = () => setQuantity((q) => Math.min(q + 1, 99));
@@ -78,43 +76,19 @@ export default function Thambnail({ product }: { product?: ProductCard }) {
         <h1 className="font-semibold text-2xl">
           {product?.title ?? "Product name"}
         </h1>
-        {typeof product?.rating === "number" && (
+        {typeof product?.rating?.rate === "number" && (
           <div className="mt-2 flex items-center gap-2 text-gray-600">
-            <StarRating rating={product.rating} size="md" />
-            {typeof product.reviews === "number" && (
-              <span className="text-sm">({product.reviews} reviews)</span>
+            <StarRating rating={product.rating.rate} size="md" />
+            {typeof product.rating.count === "number" && (
+              <span className="text-sm">({product.rating.count} reviews)</span>
             )}
           </div>
         )}
-        {(product?.newPrice || product?.oldPrice) && (
+        {typeof product?.price === "number" && (
           <p className="mt-3 text-2xl font-semibold">
-            {product?.newPrice ? `$${product.newPrice}` : null}
-            {product?.oldPrice ? (
-              <span className="ml-3 text-gray-400 line-through">
-                ${product.oldPrice}
-              </span>
-            ) : null}
+            ${Number(product.price.toFixed(2))}
           </p>
         )}
-        {Array.isArray(product?.colors) && product?.colors?.length ? (
-          <div className="mt-4">
-            <p className="text-sm text-gray-600 mb-2">Colours:</p>
-            <div className="flex items-center gap-2">
-              {product!.colors!.map((c) => (
-                <button
-                  type="button"
-                  key={c}
-                  aria-label={`Choose color ${c}`}
-                  onClick={() => setSelectedColor(c)}
-                  className={`h-5 w-5 rounded-full ring-1 ${
-                    selectedColor === c ? "ring-black" : "ring-gray-300"
-                  }`}
-                  style={{ backgroundColor: c }}
-                />
-              ))}
-            </div>
-          </div>
-        ) : null}
 
         {product?.description && (
           <>

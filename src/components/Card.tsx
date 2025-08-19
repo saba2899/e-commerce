@@ -1,4 +1,4 @@
-import type { ProductCard } from "../types/productCard";
+import type { Product } from "../types/productCard";
 import StarRating from "./StarRating";
 import { cn } from "../utils/cn";
 import { CiHeart } from "react-icons/ci";
@@ -9,10 +9,11 @@ import { IoEyeOutline } from "react-icons/io5";
 import { useNavigate } from "react-router";
 
 type CardProps = {
-  product: ProductCard;
-  onAddToCart?: (p: ProductCard) => void;
+  product: Product;
+  onAddToCart?: (p: Product) => void;
   showRating?: boolean;
-  showDiscount?: boolean;
+  oldPrice?: number;
+  discountPercent?: number;
   ctaLabel?: string;
   variant?: "default" | "compact";
   className?: string;
@@ -21,7 +22,8 @@ export default function Card({
   product,
   onAddToCart,
   showRating = true,
-  showDiscount = true,
+  oldPrice,
+  discountPercent,
   ctaLabel = "Add To Cart",
   variant = "default",
   className,
@@ -29,17 +31,11 @@ export default function Card({
   const navigate = useNavigate();
   const { user } = useUser();
   const [loginOpen, setLoginOpen] = useState(false);
-  const {
-    title,
-    image,
-    newPrice,
-    oldPrice,
-    discount,
-    rating,
-    reviews,
-    isNew,
-    colors,
-  } = product;
+  const title = product.title;
+  const image = product.image;
+  const newPrice = Number(product.price?.toFixed?.(2) ?? product.price);
+  const rating = product.rating?.rate ?? 0;
+  const reviews = product.rating?.count ?? 0;
 
   return (
     <>
@@ -51,17 +47,11 @@ export default function Card({
         )}
       >
         <div className="relative rounded-lg bg-gray-100 overflow-hidden">
-          {showDiscount && typeof discount === "number" && (
+          {typeof discountPercent === "number" && discountPercent > 0 && (
             <span className="absolute left-3 top-3 z-10 bg-red-500 text-white px-2 py-1 text-xs rounded-md">
-              -{discount}%
+              -{discountPercent}%
             </span>
           )}
-          {isNew && (
-            <span className="absolute left-3 top-3 z-10 bg-green-500 text-white px-2 py-1 text-xs rounded-md">
-              NEW
-            </span>
-          )}
-          {/* top-right actions */}
           <div className="absolute right-3 top-3 z-10 flex flex-col gap-2">
             <button
               type="button"
@@ -71,7 +61,6 @@ export default function Card({
                   setLoginOpen(true);
                   return;
                 }
-                // TODO: add to wishlist when implemented
               }}
               className="grid h-8 w-8 cursor-pointer place-items-center rounded-full bg-white shadow-sm ring-1 ring-black/5 hover:bg-black hover:text-white transition"
             >
@@ -108,32 +97,24 @@ export default function Card({
           </button>
         </div>
 
-        <h3 className="mt-3 text-base font-semibold text-black">{title}</h3>
+        <h3
+          className="mt-3 text-base font-semibold text-black leading-6 min-h-[48px] max-h-[48px] overflow-hidden break-words"
+          title={title}
+        >
+          {title}
+        </h3>
 
-        <p className="mt-2 text-red-500">
+        <p className="mt-2 text-red-500 min-h-[28px]">
           ${newPrice}
-          {oldPrice && (
+          {typeof oldPrice === "number" && oldPrice > newPrice ? (
             <span className="ml-3 text-gray-400 line-through">${oldPrice}</span>
-          )}
+          ) : null}
         </p>
 
         {showRating && (
-          <div className="mt-2 flex items-center gap-2 text-gray-500 text-sm">
+          <div className="mt-2 flex items-center gap-2 text-gray-500 text-sm min-h-[20px]">
             <StarRating rating={rating} />
             <span>({reviews})</span>
-          </div>
-        )}
-
-        {Array.isArray(colors) && colors.length > 0 && (
-          <div className="mt-3 flex items-center gap-2">
-            {colors.map((c) => (
-              <button
-                key={c}
-                aria-label={`Choose color ${c}`}
-                className="h-4 w-4 rounded-full ring-1 ring-gray-300"
-                style={{ backgroundColor: c }}
-              />
-            ))}
           </div>
         )}
       </article>

@@ -12,7 +12,6 @@ export default function FavouriteButton() {
       setOpen(true);
       return;
     }
-    // TODO: open wishlist panel when implemented
   }
 
   return (

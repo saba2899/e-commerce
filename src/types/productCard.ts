@@ -1,13 +1,12 @@
-export type ProductCard = {
+export interface Product {
   id: number;
   title: string;
+  price: number;
+  description: string;
+  category: string;
   image: string;
-  oldPrice?: number;
-  newPrice?: number;
-  discount?: number;
-  rating: number;
-  reviews: number;
-  isNew?: boolean;
-  colors?: string[];
-  description?: string;
-};
+  rating: {
+    rate: number;
+    count: number;
+  };
+}

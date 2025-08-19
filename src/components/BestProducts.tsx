@@ -1,12 +1,41 @@
 import { SwiperSlide } from "swiper/react";
-import { BEST_PRODUCTS_MOCK } from "../data/bestCard";
 import ProductSlide from "./ProductSlide";
 import SectionTitle from "./SectionTitle";
 import Tag from "./Tag";
 import Card from "./Card";
 import Button from "./Button";
+import { useEffect, useState } from "react";
+import type { Product } from "../types/productCard";
 
 export default function BestProducts() {
+  const [items, setItems] = useState<Product[]>([]);
+  const [loading, setLoading] = useState(true);
+
+  useEffect(() => {
+    (async () => {
+      try {
+        const res = await fetch("https://fakestoreapi.com/products");
+        const data: Product[] = await res.json();
+        setItems(data.slice(0, 4));
+      } catch (e) {
+        console.error(e);
+        setItems([]);
+      } finally {
+        setLoading(false);
+      }
+    })();
+  }, []);
+
+  const skeletonItems: Product[] = Array.from({ length: 4 }).map((_, i) => ({
+    id: -1 - i,
+    title: "",
+    price: 0,
+    description: "",
+    category: "",
+    image: "",
+    rating: { rate: 0, count: 0 },
+  }));
+
   return (
     <div className="flex flex-col gap-4 mt-20 page-container">
       <div className="flex items-center justify-between">
@@ -20,10 +49,14 @@ export default function BestProducts() {
       </div>
 
       <ProductSlide
-        items={BEST_PRODUCTS_MOCK}
+        items={loading ? skeletonItems : items}
         renderItem={(product) => (
           <SwiperSlide key={product.id}>
-            <Card product={product} />
+            {loading ? (
+              <div className="h-60 rounded-lg bg-gray-100 animate-pulse" />
+            ) : (
+              <Card product={product as Product} />
+            )}
           </SwiperSlide>
         )}
       />

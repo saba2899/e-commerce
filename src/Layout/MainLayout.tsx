@@ -2,6 +2,7 @@ import { Outlet } from "react-router";
 import Footer from "../components/Footer";
 import Header from "../components/Header";
 import { UserProvider } from "../context/UserContextProvider";
+import BackToTop from "../components/BackToTop";
 
 export const MainLayout = () => {
   return (
@@ -13,6 +14,7 @@ export const MainLayout = () => {
         </main>
         <Footer />
       </div>
+      <BackToTop />
     </UserProvider>
   );
 };
