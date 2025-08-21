@@ -17,7 +17,7 @@ interface MobileAccountSheetProps {
   onClose?: () => void;
 }
 
-export default function MobileAccountSheet({
+export function MobileAccountSheet({
   isOpen,
   onClose,
 }: MobileAccountSheetProps) {
@@ -104,7 +104,7 @@ export default function MobileAccountSheet({
               onClose?.();
               navigate("/profile");
             }}
-            className="w-full flex items-center gap-3 px-4 py-3 text-gray-700 hover:bg-gray-100 rounded-lg text-left"
+            className="flex items-center w-full gap-3 px-4 py-3 text-left text-gray-700 rounded-lg hover:bg-gray-100"
           >
             <CiUser size={18} />
             <span>Profile</span>
@@ -115,7 +115,7 @@ export default function MobileAccountSheet({
               onClose?.();
               navigate("/favorites");
             }}
-            className="w-full flex items-center gap-3 px-4 py-3 text-gray-700 hover:bg-gray-100 rounded-lg text-left"
+            className="flex items-center w-full gap-3 px-4 py-3 text-left text-gray-700 rounded-lg hover:bg-gray-100"
           >
             <CiHeart size={18} />
             <span>Wishlist</span>
@@ -125,7 +125,7 @@ export default function MobileAccountSheet({
             onClick={() => {
               onClose?.();
             }}
-            className="w-full flex items-center gap-3 px-4 py-3 text-gray-700 hover:bg-gray-100 rounded-lg text-left"
+            className="flex items-center w-full gap-3 px-4 py-3 text-left text-gray-700 rounded-lg hover:bg-gray-100"
           >
             <CiShoppingCart size={18} />
             <span>Orders</span>
@@ -135,17 +135,17 @@ export default function MobileAccountSheet({
             onClick={() => {
               onClose?.();
             }}
-            className="w-full flex items-center gap-3 px-4 py-3 text-gray-700 hover:bg-gray-100 rounded-lg text-left"
+            className="flex items-center w-full gap-3 px-4 py-3 text-left text-gray-700 rounded-lg hover:bg-gray-100"
           >
             <CiSettings size={18} />
             <span>Settings</span>
           </button>
 
-          <div className="border-t border-gray-100 my-2" />
+          <div className="my-2 border-t border-gray-100" />
 
           <button
             onClick={handleLogOut}
-            className="w-full flex items-center gap-3 px-4 py-3 text-red-600 hover:bg-red-50 rounded-lg text-left"
+            className="flex items-center w-full gap-3 px-4 py-3 text-left text-red-600 rounded-lg hover:bg-red-50"
           >
             <CiLogout size={18} />
             <span>Log out</span>

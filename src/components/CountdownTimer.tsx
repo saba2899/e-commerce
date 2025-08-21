@@ -9,7 +9,7 @@ type CountdownTimerProps = {
   onComplete?: () => void;
 };
 
-export default function CountdownTimer({
+export function CountdownTimer({
   targetDate,
   variant = "default",
   onComplete,
@@ -88,7 +88,6 @@ export default function CountdownTimer({
     );
   };
 
-  // kept for default/circle layout (no separators needed). FlashSale layout renders separators inline.
   if (variant === "flashSale") {
     const units = [
       { label: L.days, value: t.days },
@@ -106,13 +105,13 @@ export default function CountdownTimer({
                 <span className="text-[10px] md:text-xs text-gray-500">
                   {u.label}
                 </span>
-                <span className="font-semibold text-2xl md:text-3xl text-black">
+                <span className="text-2xl font-semibold text-black md:text-3xl">
                   {pad(u.value)}
                 </span>
               </div>
               {i < units.length - 1 && (
                 <span
-                  className="mx-1 text-red-500 font-semibold text-lg md:text-xl self-center"
+                  className="self-center mx-1 text-lg font-semibold text-red-500 md:text-xl"
                   aria-hidden
                 >
                   :

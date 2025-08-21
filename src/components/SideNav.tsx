@@ -1,8 +1,8 @@
 import { CATEGORIES } from "../data/categories";
 
-export default function SideNav() {
+export function SideNav() {
   return (
-    <aside className="hidden lg:block w-64 shrink-0">
+    <aside className="hidden w-64 lg:block shrink-0">
       <nav
         aria-label="Browse categories"
         className="min-h-[360px] border-r pr-6"
@@ -12,7 +12,7 @@ export default function SideNav() {
             <li key={label}>
               <a
                 href={href}
-                className="block py-3 px-4 rounded-lg text-sm text-gray-700 hover:bg-red-50 hover:text-red-600 transition-colors"
+                className="block px-4 py-3 text-sm text-gray-700 transition-colors rounded-lg hover:bg-red-50 hover:text-red-600"
               >
                 <span>{label}</span>
               </a>

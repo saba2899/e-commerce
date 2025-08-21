@@ -6,7 +6,7 @@ type Props<T extends ElementType = "h2"> = {
   children: ReactNode;
   className?: string;
 };
-export default function SectionTitle<T extends ElementType = "h2">({
+export function SectionTitle<T extends ElementType = "h2">({
   as,
   children,
   className,

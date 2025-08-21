@@ -1,7 +1,7 @@
 import { useState } from "react";
 import { CiSearch } from "react-icons/ci";
 
-function SearchBar() {
+export function SearchBar() {
   const [query, setQuery] = useState("");
 
   return (
@@ -26,12 +26,10 @@ function SearchBar() {
       <button
         type="submit"
         aria-label="Search"
-        className="absolute right-2 top-1/2 -translate-y-1/2 p-1 rounded-md hover:bg-black/5"
+        className="absolute p-1 -translate-y-1/2 rounded-md right-2 top-1/2 hover:bg-black/5"
       >
         <CiSearch size={22} />
       </button>
     </form>
   );
 }
-
-export default SearchBar;

@@ -12,7 +12,7 @@ import product5 from "../assets/product5.webp";
 
 const slides = [product1, product2, product3, product4, product5];
 
-export default function Slider() {
+export function Slider() {
   return (
     <Swiper
       modules={[Autoplay, Pagination, A11y, Keyboard]}
@@ -24,7 +24,7 @@ export default function Slider() {
       }}
       pagination={{ clickable: true }}
       keyboard={{ enabled: true }}
-      className="hero-swiper w-full"
+      className="w-full hero-swiper"
       aria-roledescription="carousel"
       aria-label="Promotions"
     >
@@ -34,7 +34,7 @@ export default function Slider() {
             <img
               src={src}
               alt={`Slide ${i + 1}`}
-              className="block h-full w-full object-cover"
+              className="block object-cover w-full h-full"
               loading={i === 0 ? "eager" : "lazy"}
             />
           </div>

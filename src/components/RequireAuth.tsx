@@ -2,7 +2,7 @@ import { Navigate, useLocation } from "react-router";
 import { useUser } from "../hooks/useUser";
 import type { ReactNode } from "react";
 
-export default function RequireAuth({ children }: { children: ReactNode }) {
+export function RequireAuth({ children }: { children: ReactNode }) {
   const { user } = useUser();
   const location = useLocation();
 

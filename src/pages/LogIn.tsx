@@ -1,13 +1,12 @@
 import type React from "react";
 import singup from "../assets/signup.avif";
-import Button from "../components/Button";
-import Input from "../components/Input";
+import { Button, Input } from "../components";
 import { useState } from "react";
 import { logIn } from "../services/auth";
 import { useNavigate } from "react-router";
 import { useUser } from "../hooks/useUser";
 
-export default function LogIn() {
+export function LogIn() {
   const [email, setEmail] = useState("");
   const [password, setPassword] = useState("");
   const [error, setError] = useState<string | null>(null);
@@ -41,7 +40,7 @@ export default function LogIn() {
   }
 
   return (
-    <section className="page-container flex justify-center items-center mt-20 gap-20 mx-auto">
+    <section className="flex items-center justify-center gap-20 mx-auto mt-20 page-container">
       <div className="max-sm:hidden">
         <img className="h-150 w-170" src={singup} alt={singup} />
       </div>
@@ -56,7 +55,7 @@ export default function LogIn() {
           type="email"
           name="email"
           placeholder="Email or Phone Number"
-          className="w-full border-b pb-1 pr-3 pt-3 outline-none"
+          className="w-full pt-3 pb-1 pr-3 border-b outline-none"
           value={email}
           onChange={(e) => setEmail(e.target.value)}
         />
@@ -64,14 +63,14 @@ export default function LogIn() {
           type="password"
           name="password"
           placeholder="Password"
-          className="w-full border-b pb-1 pr-3 pt-3 outline-none"
+          className="w-full pt-3 pb-1 pr-3 border-b outline-none"
           value={password}
           onChange={(e) => setPassword(e.target.value)}
         />
-        {error && <p className="text-red-500 text-sm">{error}</p>}
+        {error && <p className="text-sm text-red-500">{error}</p>}
 
-        <div className="flex  gap-10 mt-3 items-center">
-          <Button className="w-40 bg-red-500 text-white  hover:bg-red-400">
+        <div className="flex items-center gap-10 mt-3">
+          <Button className="w-40 text-white bg-red-500 hover:bg-red-400">
             Log in
           </Button>
           <div>

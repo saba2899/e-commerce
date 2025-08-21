@@ -10,7 +10,7 @@ const NAV: Item[] = [
   { label: "Sign up", route: "/signup" },
 ];
 
-export default function NavLinks({
+export function NavLinks({
   vertical = false,
   onNavigate,
   user,

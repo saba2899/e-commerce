@@ -1,12 +1,11 @@
 import { Link, useNavigate } from "react-router";
 import singup from "../assets/signup.avif";
-import Button from "../components/Button";
-import Input from "../components/Input";
+import { Button, Input } from "../components";
 import { useState } from "react";
 import { signUp } from "../services/auth";
 import { useUser } from "../hooks/useUser";
 
-export default function SingUp() {
+export function SignUp() {
   const [name, setName] = useState("");
   const [email, setEmail] = useState("");
   const [password, setPassword] = useState("");
@@ -55,7 +54,7 @@ export default function SingUp() {
   }
 
   return (
-    <section className="page-container flex justify-center items-center mt-20 gap-20 mx-auto">
+    <section className="flex items-center justify-center gap-20 mx-auto mt-20 page-container">
       <div>
         <img className="h-150 w-170" src={singup} alt={singup} />
       </div>
@@ -85,11 +84,11 @@ export default function SingUp() {
           onChange={(e) => setPassword(e.target.value)}
         />
 
-        {error && <p className="text-red-500 text-sm">{error}</p>}
+        {error && <p className="text-sm text-red-500">{error}</p>}
 
         <Button
           type="submit"
-          className="w-full bg-red-500 text-white mt-5 hover:bg-red-400"
+          className="w-full mt-5 text-white bg-red-500 hover:bg-red-400"
         >
           Create ACcount
         </Button>

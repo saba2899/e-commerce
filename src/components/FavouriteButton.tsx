@@ -1,9 +1,12 @@
 import { useState } from "react";
-import { CiHeart } from "react-icons/ci";
-import { useUser } from "../hooks/useUser";
-import LoginModal from "./LoginModal";
 
-export default function FavouriteButton() {
+import { CiHeart } from "react-icons/ci";
+
+import { useUser } from "../hooks/useUser";
+
+import { LoginModal } from "../components";
+
+export function FavouriteButton() {
   const { user } = useUser();
   const [open, setOpen] = useState(false);
 
@@ -20,7 +23,7 @@ export default function FavouriteButton() {
         type="button"
         aria-label="Wishlist"
         onClick={handleClick}
-        className="hidden lg:block cursor-pointer relative p-2 rounded:md hover:bg-black/5"
+        className="relative hidden p-2 cursor-pointer lg:block rounded:md hover:bg-black/5"
       >
         <CiHeart size={22} />
       </button>

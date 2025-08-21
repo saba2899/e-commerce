@@ -1,11 +1,16 @@
 import type { Product } from "../types/productCard";
-import StarRating from "./StarRating";
+
+import { StarRating, LoginModal } from "../components";
+
 import { cn } from "../utils/cn";
+
 import { CiHeart } from "react-icons/ci";
-import { useState } from "react";
-import { useUser } from "../hooks/useUser";
-import LoginModal from "./LoginModal";
 import { IoEyeOutline } from "react-icons/io5";
+
+import { useState } from "react";
+
+import { useUser } from "../hooks/useUser";
+
 import { useNavigate } from "react-router";
 
 type CardProps = {
@@ -18,7 +23,7 @@ type CardProps = {
   variant?: "default" | "compact";
   className?: string;
 };
-export default function Card({
+export function Card({
   product,
   onAddToCart,
   showRating = true,
@@ -46,13 +51,13 @@ export default function Card({
           className
         )}
       >
-        <div className="relative rounded-lg bg-gray-100 overflow-hidden">
+        <div className="relative overflow-hidden bg-gray-100 rounded-lg">
           {typeof discountPercent === "number" && discountPercent > 0 && (
-            <span className="absolute left-3 top-3 z-10 bg-red-500 text-white px-2 py-1 text-xs rounded-md">
+            <span className="absolute z-10 px-2 py-1 text-xs text-white bg-red-500 rounded-md left-3 top-3">
               -{discountPercent}%
             </span>
           )}
-          <div className="absolute right-3 top-3 z-10 flex flex-col gap-2">
+          <div className="absolute z-10 flex flex-col gap-2 right-3 top-3">
             <button
               type="button"
               aria-label="Add to wishlist"
@@ -62,7 +67,7 @@ export default function Card({
                   return;
                 }
               }}
-              className="grid h-8 w-8 cursor-pointer place-items-center rounded-full bg-white shadow-sm ring-1 ring-black/5 hover:bg-black hover:text-white transition"
+              className="grid w-8 h-8 transition bg-white rounded-full shadow-sm cursor-pointer place-items-center ring-1 ring-black/5 hover:bg-black hover:text-white"
             >
               <CiHeart size={16} />
             </button>
@@ -72,7 +77,7 @@ export default function Card({
               onClick={() =>
                 navigate("/productdetails", { state: { product } })
               }
-              className="grid h-8 w-8 place-items-center cursor-pointer rounded-full bg-white shadow-sm ring-1 ring-black/5 hover:bg-black hover:text-white transition"
+              className="grid w-8 h-8 transition bg-white rounded-full shadow-sm cursor-pointer place-items-center ring-1 ring-black/5 hover:bg-black hover:text-white"
             >
               <IoEyeOutline size={16} />
             </button>
@@ -82,15 +87,14 @@ export default function Card({
               src={image}
               alt={title}
               loading="lazy"
-              className="h-36 w-36 object-contain"
+              className="object-contain h-36 w-36"
             />
           </div>
 
           <button
             type="button"
             onClick={() => onAddToCart?.(product)}
-            className="absolute w-full bottom-3 left-0 right-0 mx-auto bg-black text-white px-3 py-2 text-sm rounded
-                     opacity-0 translate-y-1 transition-all duration-200 group-hover:opacity-100 group-hover:translate-y-0"
+            className="absolute left-0 right-0 w-full px-3 py-2 mx-auto text-sm text-white transition-all duration-200 translate-y-1 bg-black rounded opacity-0 bottom-3 group-hover:opacity-100 group-hover:translate-y-0"
             aria-label={`Add ${title} to cart`}
           >
             {ctaLabel}

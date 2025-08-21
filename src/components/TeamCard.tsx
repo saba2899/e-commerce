@@ -7,12 +7,12 @@ type TeamCardProps = {
   card: TeamMembersProps;
 };
 
-export default function TeamCard({ card }: TeamCardProps) {
+export function TeamCard({ card }: TeamCardProps) {
   return (
     <article className="page-container flex flex-col justify-center  w-[280px] max-w-full ">
       <div>
         <img
-          className="h-76 w-56"
+          className="w-56 h-76"
           src={card.image}
           alt={`${card.name} ${card.lastName}`}
         />

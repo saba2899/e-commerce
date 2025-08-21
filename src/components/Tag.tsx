@@ -6,7 +6,7 @@ type TagProps = {
   className?: string;
 };
 
-export default function Tag({
+export function Tag({
   children,
   variant = "red",
   size = "md",

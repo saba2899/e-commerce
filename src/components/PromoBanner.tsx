@@ -1,15 +1,14 @@
-import Button from "./Button";
-import CountdownTimer from "./CountdownTimer";
+import { Button, CountdownTimer } from "../components";
 
-export default function PromoBanner() {
+export function PromoBanner() {
   return (
     <div className="mt-30 max-sm:hidden">
-      <div className="flex items-center  m-auto bg-black w-6xl h-120">
+      <div className="flex items-center m-auto bg-black w-6xl h-120">
         <div className="flex flex-col gap-10 m-auto">
           <h1 className="text-green-500">Categories</h1>
           <div>
-            <h1 className="text-white text-5xl">Enhance Your</h1>
-            <span className="text-white text-5xl">Music Experience</span>
+            <h1 className="text-5xl text-white">Enhance Your</h1>
+            <span className="text-5xl text-white">Music Experience</span>
           </div>
           <CountdownTimer targetDate={"2025-09-20T22:59:59"} variant="circle" />
           <Button className="w-50 bg-[#00FF66] hover:bg-[#00ff66c9] text-white text-md">

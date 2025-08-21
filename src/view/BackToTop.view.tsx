@@ -1,7 +1,7 @@
 import { useEffect, useState } from "react";
 import { FiArrowUp } from "react-icons/fi";
 
-export default function BackToTop() {
+export function BackToTop() {
   const [visible, setVisible] = useState(false);
 
   useEffect(() => {

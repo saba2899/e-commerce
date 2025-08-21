@@ -5,7 +5,7 @@ type ButtonProps = React.ButtonHTMLAttributes<HTMLButtonElement> & {
   className?: string;
 };
 
-export default function Button({ children, className, ...props }: ButtonProps) {
+export function Button({ children, className, ...props }: ButtonProps) {
   return (
     <button
       className={clsx("p-3 text-center cursor-pointer rounded-md", className)}

@@ -1,7 +1,6 @@
-import SectionTitle from "./SectionTitle";
-import Tag from "./Tag";
+import { SectionTitle, Tag } from "../components";
 
-export default function ExploreTitle() {
+export function ExploreTitle() {
   return (
     <div className="flex flex-col gap-4">
       <Tag>Our Products</Tag>

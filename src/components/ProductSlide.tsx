@@ -4,7 +4,7 @@ import type { SwiperProps } from "swiper/react";
 import { A11y } from "swiper/modules";
 import { useRef } from "react";
 import { cn } from "../utils/cn";
-import Arrow from "./Arrow";
+import { Arrow } from "../components";
 
 import "swiper/css";
 
@@ -18,7 +18,7 @@ type ProductSlideProps<T> = {
   className?: string;
 };
 
-export default function ProductSlide<T>({
+export function ProductSlide<T>({
   items,
   renderItem,
   children,
@@ -31,7 +31,7 @@ export default function ProductSlide<T>({
 
   return (
     <section className={cn("mt-5", className)}>
-      <div className="mb-5 flex items-end justify-between">
+      <div className="flex items-end justify-between mb-5">
         <div className="ml-3">{titleSlot}</div>
 
         {showArrows && <Arrow swiperRef={swiperRef} />}

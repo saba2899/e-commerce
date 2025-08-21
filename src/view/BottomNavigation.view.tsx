@@ -11,9 +11,9 @@ import {
   HiOutlineUser,
 } from "react-icons/hi2";
 import { useUser } from "../hooks/useUser";
-import MobileAccountSheet from "./MobileAccountSheet";
+import { MobileAccountSheet } from "../components";
 
-const BottomNavigation = () => {
+export const BottomNavigation = () => {
   const location = useLocation();
   const [accountOpen, setAccountOpen] = useState(false);
   const { user } = useUser();
@@ -98,5 +98,3 @@ const BottomNavigation = () => {
     </div>
   );
 };
-
-export default BottomNavigation;

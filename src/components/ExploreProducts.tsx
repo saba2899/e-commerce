@@ -1,11 +1,11 @@
 import { SwiperSlide } from "swiper/react";
-import ProductSlide from "./ProductSlide";
-import Card from "./Card";
-import ExploreTitle from "./ExploreTitle";
+import { ProductSlide, Card, ExploreTitle } from "../components";
+
 import { useEffect, useState } from "react";
+
 import type { Product } from "../types/productCard";
 
-export default function ExploreProducts() {
+export function ExploreProducts() {
   const [items, setItems] = useState<Product[]>([]);
   const [loading, setLoading] = useState(true);
 
@@ -47,7 +47,7 @@ export default function ExploreProducts() {
         renderItem={(product) => (
           <SwiperSlide key={product.id}>
             {loading ? (
-              <div className="h-60 rounded-lg bg-gray-100 animate-pulse" />
+              <div className="bg-gray-100 rounded-lg h-60 animate-pulse" />
             ) : (
               <Card product={product as Product} />
             )}
@@ -61,7 +61,7 @@ export default function ExploreProducts() {
         renderItem={(product) => (
           <SwiperSlide key={product.id}>
             {loading ? (
-              <div className="h-60 rounded-lg bg-gray-100 animate-pulse" />
+              <div className="bg-gray-100 rounded-lg h-60 animate-pulse" />
             ) : (
               <Card product={product as Product} />
             )}

@@ -1,11 +1,9 @@
-import AccountSideNav from "../components/AccountSideNav";
-import Input from "../components/Input";
-import Button from "../components/Button";
+import { AccountSideNav, Input, Button } from "../components";
 import { useUser } from "../hooks/useUser";
 import { useState } from "react";
 import { changePassword, updateNamePartsIfMissing } from "../services/auth";
 
-export default function Profile() {
+export function Profile() {
   const { user, setUser } = useUser();
   const [currentPassword, setCurrentPassword] = useState("");
   const [newPassword, setNewPassword] = useState("");
@@ -76,27 +74,27 @@ export default function Profile() {
   }
 
   return (
-    <div className="mx-auto max-w-6xl px-4 py-8">
+    <div className="max-w-6xl px-4 py-8 mx-auto">
       <div className="flex gap-8">
         <AccountSideNav />
 
         <main className="flex-1">
-          <h1 className="text-red-500 text-base font-semibold mb-6">
+          <h1 className="mb-6 text-base font-semibold text-red-500">
             Edit Your Profile
           </h1>
 
           {user && (!user.name || !user.email || !user.address) && (
-            <div className="mb-4 rounded border border-yellow-300 bg-yellow-50 p-3 text-sm text-yellow-800">
+            <div className="p-3 mb-4 text-sm text-yellow-800 border border-yellow-300 rounded bg-yellow-50">
               Please complete your profile information.
             </div>
           )}
 
           <form
             onSubmit={onSave}
-            className="grid grid-cols-1 md:grid-cols-2 gap-4 max-w-3xl"
+            className="grid max-w-3xl grid-cols-1 gap-4 md:grid-cols-2"
           >
             <div>
-              <label className="block text-sm mb-1">First Name</label>
+              <label className="block mb-1 text-sm">First Name</label>
               <Input
                 value={canEditFirst ? firstNameDraft : firstName}
                 onChange={(e) =>
@@ -112,7 +110,7 @@ export default function Profile() {
               />
             </div>
             <div>
-              <label className="block text-sm mb-1">Last Name</label>
+              <label className="block mb-1 text-sm">Last Name</label>
               <Input
                 value={canEditLast ? lastNameDraft : lastName}
                 onChange={(e) =>
@@ -129,15 +127,15 @@ export default function Profile() {
             </div>
 
             <div className="md:col-span-1">
-              <label className="block text-sm mb-1">Email</label>
+              <label className="block mb-1 text-sm">Email</label>
               <Input
                 value={user?.email || ""}
                 readOnly
-                className="w-full border rounded-md px-3 py-2 bg-gray-50 cursor-not-allowed"
+                className="w-full px-3 py-2 border rounded-md cursor-not-allowed bg-gray-50"
               />
             </div>
             <div className="md:col-span-1">
-              <label className="block text-sm mb-1">Address</label>
+              <label className="block mb-1 text-sm">Address</label>
               <Input
                 value={canEditAddress ? addressDraft : user?.address || ""}
                 onChange={(e) =>
@@ -153,46 +151,46 @@ export default function Profile() {
               />
             </div>
 
-            <div className="md:col-span-2 mt-4">
-              <label className="block text-sm mb-2">Password Changes</label>
+            <div className="mt-4 md:col-span-2">
+              <label className="block mb-2 text-sm">Password Changes</label>
               <div className="space-y-3">
                 <Input
                   type="password"
                   placeholder="Current Password"
                   value={currentPassword}
                   onChange={(e) => setCurrentPassword(e.target.value)}
-                  className="w-full border rounded-md px-3 py-2"
+                  className="w-full px-3 py-2 border rounded-md"
                 />
                 <Input
                   type="password"
                   placeholder="New Password"
                   value={newPassword}
                   onChange={(e) => setNewPassword(e.target.value)}
-                  className="w-full border rounded-md px-3 py-2"
+                  className="w-full px-3 py-2 border rounded-md"
                 />
                 <Input
                   type="password"
                   placeholder="Confirm New Password"
                   value={confirmPassword}
                   onChange={(e) => setConfirmPassword(e.target.value)}
-                  className="w-full border rounded-md px-3 py-2"
+                  className="w-full px-3 py-2 border rounded-md"
                 />
               </div>
             </div>
 
             {error && (
-              <div className="md:col-span-2 text-sm text-red-600">{error}</div>
+              <div className="text-sm text-red-600 md:col-span-2">{error}</div>
             )}
             {status && (
-              <div className="md:col-span-2 text-sm text-green-600">
+              <div className="text-sm text-green-600 md:col-span-2">
                 {status}
               </div>
             )}
 
-            <div className="md:col-span-2 mt-4 flex items-center gap-4">
+            <div className="flex items-center gap-4 mt-4 md:col-span-2">
               <Button
                 type="button"
-                className="px-5 py-2 rounded-md border"
+                className="px-5 py-2 border rounded-md"
                 onClick={() => {
                   setCurrentPassword("");
                   setNewPassword("");
@@ -207,14 +205,14 @@ export default function Profile() {
               </Button>
               <Button
                 type="submit"
-                className="px-5 py-2 rounded-md bg-red-500 text-white"
+                className="px-5 py-2 text-white bg-red-500 rounded-md"
               >
                 Save Changes
               </Button>
               {(canEditFirst || canEditLast || canEditAddress) && (
                 <Button
                   type="button"
-                  className="px-5 py-2 rounded-md bg-gray-800 text-white"
+                  className="px-5 py-2 text-white bg-gray-800 rounded-md"
                   onClick={saveMissingNameParts}
                 >
                   Save Profile

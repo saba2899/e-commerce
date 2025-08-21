@@ -1,8 +1,8 @@
 import type { Product } from "../types/productCard";
-import StarRating from "./StarRating";
+import { StarRating } from "../components";
 import { useMemo, useState } from "react";
 
-export default function Thambnail({ product }: { product?: Product }) {
+export function Thambnail({ product }: { product?: Product }) {
   const images = useMemo<string[]>(() => {
     if (!product?.image) return new Array(4).fill("");
     return [product.image, product.image, product.image, product.image];
@@ -28,8 +28,8 @@ export default function Thambnail({ product }: { product?: Product }) {
   };
 
   return (
-    <div className="flex justify-center gap-5 page-container mt-20">
-      <div className="flex gap-5 w-full items-stretch">
+    <div className="flex justify-center gap-5 mt-20 page-container">
+      <div className="flex items-stretch w-full gap-5">
         <div className="flex flex-col gap-3">
           {images.map((src, i) => (
             <button
@@ -50,14 +50,14 @@ export default function Thambnail({ product }: { product?: Product }) {
                   className="object-contain max-h-20"
                 />
               ) : (
-                <div className="bg-gray-200 h-20 w-20 rounded" />
+                <div className="w-20 h-20 bg-gray-200 rounded" />
               )}
             </button>
           ))}
         </div>
 
         <div
-          className="rounded-md bg-gray-100 grid place-items-center"
+          className="grid bg-gray-100 rounded-md place-items-center"
           style={{ width: 560, height: 520 }}
         >
           {images[selectedImageIdx] ? (
@@ -67,17 +67,17 @@ export default function Thambnail({ product }: { product?: Product }) {
               className="object-contain max-h-[460px]"
             />
           ) : (
-            <div className="bg-gray-200 w-full h-full" />
+            <div className="w-full h-full bg-gray-200" />
           )}
         </div>
       </div>
 
       <div className="w-full">
-        <h1 className="font-semibold text-2xl">
+        <h1 className="text-2xl font-semibold">
           {product?.title ?? "Product name"}
         </h1>
         {typeof product?.rating?.rate === "number" && (
-          <div className="mt-2 flex items-center gap-2 text-gray-600">
+          <div className="flex items-center gap-2 mt-2 text-gray-600">
             <StarRating rating={product.rating.rate} size="md" />
             {typeof product.rating.count === "number" && (
               <span className="text-sm">({product.rating.count} reviews)</span>
@@ -99,7 +99,7 @@ export default function Thambnail({ product }: { product?: Product }) {
           </>
         )}
 
-        <div className="mt-5 flex items-center gap-4">
+        <div className="flex items-center gap-4 mt-5">
           <div className="flex items-center gap-2">
             <span className="text-sm">Size:</span>
             {(["XS", "S", "M", "L", "XL"] as const).map((s) => (
@@ -119,7 +119,7 @@ export default function Thambnail({ product }: { product?: Product }) {
           </div>
         </div>
 
-        <div className="mt-4 flex items-center gap-3">
+        <div className="flex items-center gap-3 mt-4">
           <div className="flex items-center border rounded">
             <button
               type="button"
@@ -144,16 +144,16 @@ export default function Thambnail({ product }: { product?: Product }) {
           <button
             type="button"
             onClick={handleBuyNow}
-            className="bg-red-500 hover:bg-red-600 text-white px-6 py-2 rounded"
+            className="px-6 py-2 text-white bg-red-500 rounded hover:bg-red-600"
           >
             Buy Now
           </button>
-          <button className="p-2 rounded border" aria-label="Add to wishlist">
+          <button className="p-2 border rounded" aria-label="Add to wishlist">
             ❤
           </button>
         </div>
 
-        <div className="mt-5 border rounded p-4 text-sm">
+        <div className="p-4 mt-5 text-sm border rounded">
           <div className="flex items-start gap-3">
             <span className="font-medium">Free Delivery</span>
             <span className="text-gray-500">

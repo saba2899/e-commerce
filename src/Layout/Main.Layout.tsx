@@ -1,10 +1,12 @@
 import { Outlet } from "react-router";
-import Footer from "../components/Footer";
-import Header from "../components/Header";
-import BottomNavigation from "../components/BottomNavigation";
+import {
+  Footer,
+  Header,
+  BottomNavigation,
+  BackToTop,
+  SCrollToTop,
+} from "../view";
 import { UserProvider } from "../context/UserContextProvider";
-import BackToTop from "../components/BackToTop";
-import SCrollToTop from "../components/ScrollToTop";
 
 export const MainLayout = () => {
   return (

@@ -8,13 +8,13 @@ type FeatureItemProps = {
 
 function FeatureItem({ icon, title, subtitle }: FeatureItemProps) {
   return (
-    <div className="flex flex-col items-center text-center gap-3">
-      <div className="grid place-items-center rounded-full bg-gray-300/70 w-16 h-16">
-        <div className="grid place-items-center rounded-full bg-black text-white w-12 h-12">
+    <div className="flex flex-col items-center gap-3 text-center">
+      <div className="grid w-16 h-16 rounded-full place-items-center bg-gray-300/70">
+        <div className="grid w-12 h-12 text-white bg-black rounded-full place-items-center">
           {icon}
         </div>
       </div>
-      <h4 className="font-semibold text-black uppercase tracking-wide text-sm md:text-base">
+      <h4 className="text-sm font-semibold tracking-wide text-black uppercase md:text-base">
         {title}
       </h4>
       <p className="text-xs md:text-sm text-gray-600 max-w-[220px]">
@@ -24,10 +24,10 @@ function FeatureItem({ icon, title, subtitle }: FeatureItemProps) {
   );
 }
 
-export default function BenefitsRow() {
+export function BenefitsRow() {
   return (
-    <section className="page-container mt-24">
-      <div className="grid grid-cols-1 sm:grid-cols-3 gap-10 sm:gap-6 place-items-center">
+    <section className="mt-24 page-container">
+      <div className="grid grid-cols-1 gap-10 sm:grid-cols-3 sm:gap-6 place-items-center">
         <FeatureItem
           icon={<FiTruck size={18} />}
           title="Free and fast delivery"
@@ -47,5 +47,3 @@ export default function BenefitsRow() {
     </section>
   );
 }
-
-

@@ -1,14 +1,16 @@
-import Button from "../components/Button.tsx";
-import Category from "../components/Category.tsx";
-import SideNav from "../components/SideNav.tsx";
-import Slider from "../components/Slider";
-import BestProducts from "../components/BestProducts.tsx";
-import SalesCard from "../components/SalesCard.tsx";
-import PromoBanner from "../components/PromoBanner.tsx";
-import ExploreProducts from "../components/ExploreProducts.tsx";
-import BenefitsRow from "../components/BenefitsRow.tsx";
+import {
+  Button,
+  Category,
+  SideNav,
+  Slider,
+  BestProducts,
+  SalesCard,
+  PromoBanner,
+  ExploreProducts,
+  BenefitsRow,
+} from "../components/";
 
-function Home() {
+export function Home() {
   return (
     <div className="flex flex-col gap-20 ">
       <div className="flex items-start gap-6 mt-2 page-container">
@@ -36,5 +38,3 @@ function Home() {
     </div>
   );
 }
-
-export default Home;

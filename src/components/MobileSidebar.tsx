@@ -7,7 +7,7 @@ interface MobileSidebarProps {
   onClose?: () => void;
 }
 
-export default function MobileSidebar({ isOpen, onClose }: MobileSidebarProps) {
+export function MobileSidebar({ isOpen, onClose }: MobileSidebarProps) {
   const [mounted, setMounted] = useState(isOpen);
   const [closing, setClosing] = useState(false);
 
@@ -23,7 +23,7 @@ export default function MobileSidebar({ isOpen, onClose }: MobileSidebarProps) {
     return () => {
       document.body.classList.remove("overflow-hidden");
     };
-  }, [isOpen, mounted]); //
+  }, [isOpen, mounted]);
 
   const finishClose = () => {
     if (closing) {

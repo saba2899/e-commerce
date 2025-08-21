@@ -1,14 +1,19 @@
 import { createBrowserRouter } from "react-router";
-import Home from "./pages/Home";
-import Contact from "./pages/Contact";
-import { MainLayout } from "./Layout/MainLayout";
-import About from "./pages/About";
-import SignUp from "./pages/SignUp";
-import LogIn from "./pages/LogIn";
-import ProductDetails from "./pages/ProductDetails";
-import Profile from "./pages/Profile";
-import Favorites from "./pages/Favorites";
-import RequireAuth from "./components/RequireAuth";
+
+import {
+  Home,
+  Contact,
+  About,
+  SignUp,
+  LogIn,
+  ProductDetails,
+  Profile,
+  Favorites,
+} from "./pages";
+
+import { MainLayout } from "./Layout/Main.Layout";
+
+import { RequireAuth } from "./components";
 
 export const router = createBrowserRouter([
   {

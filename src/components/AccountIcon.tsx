@@ -10,7 +10,7 @@ import { logOut } from "../services/auth";
 import { useUser } from "../hooks/useUser";
 import { useNavigate, useLocation } from "react-router";
 
-export default function AccountIcon() {
+export function AccountIcon() {
   const { user, setUser } = useUser();
   const [open, setOpen] = useState(false);
   const ref = useRef<HTMLDivElement>(null);
@@ -39,7 +39,7 @@ export default function AccountIcon() {
     <div className="relative" ref={ref}>
       <button
         onClick={() => setOpen((v) => !v)}
-        className="p-2 rounded-md hover:bg-black/5 transition-colors"
+        className="p-2 transition-colors rounded-md hover:bg-black/5"
         aria-label="Account menu"
       >
         <CiUser
@@ -53,7 +53,7 @@ export default function AccountIcon() {
       </button>
 
       {open && (
-        <div className="absolute right-0 mt-2 w-56 bg-white border border-gray-200 shadow-lg rounded-lg z-50 overflow-hidden">
+        <div className="absolute right-0 z-50 w-56 mt-2 overflow-hidden bg-white border border-gray-200 rounded-lg shadow-lg">
           <div className="px-4 py-3 border-b border-gray-100 bg-gray-50">
             <p className="text-sm font-medium text-gray-900">
               {user?.name
@@ -71,7 +71,7 @@ export default function AccountIcon() {
                 setOpen(false);
                 navigate("/profile");
               }}
-              className="w-full flex items-center gap-3 px-4 py-2 text-sm text-gray-700 hover:bg-gray-100 transition-colors"
+              className="flex items-center w-full gap-3 px-4 py-2 text-sm text-gray-700 transition-colors hover:bg-gray-100"
             >
               <CiUser size={18} />
               <span>Profile</span>
@@ -79,7 +79,7 @@ export default function AccountIcon() {
 
             <button
               onClick={() => setOpen(false)}
-              className="w-full flex items-center gap-3 px-4 py-2 text-sm text-gray-700 hover:bg-gray-100 transition-colors"
+              className="flex items-center w-full gap-3 px-4 py-2 text-sm text-gray-700 transition-colors hover:bg-gray-100"
             >
               <CiHeart size={18} />
               <span>Wishlist</span>
@@ -87,7 +87,7 @@ export default function AccountIcon() {
 
             <button
               onClick={() => setOpen(false)}
-              className="w-full flex items-center gap-3 px-4 py-2 text-sm text-gray-700 hover:bg-gray-100 transition-colors"
+              className="flex items-center w-full gap-3 px-4 py-2 text-sm text-gray-700 transition-colors hover:bg-gray-100"
             >
               <CiShoppingCart size={18} />
               <span>Orders</span>
@@ -95,7 +95,7 @@ export default function AccountIcon() {
 
             <button
               onClick={() => setOpen(false)}
-              className="w-full flex items-center gap-3 px-4 py-2 text-sm text-gray-700 hover:bg-gray-100 transition-colors"
+              className="flex items-center w-full gap-3 px-4 py-2 text-sm text-gray-700 transition-colors hover:bg-gray-100"
             >
               <CiSettings size={18} />
               <span>Settings</span>
@@ -107,7 +107,7 @@ export default function AccountIcon() {
           <div className="py-2">
             <button
               onClick={handleLogOut}
-              className="w-full flex items-center gap-3 px-4 py-2 text-sm text-red-600 hover:bg-red-50 transition-colors"
+              className="flex items-center w-full gap-3 px-4 py-2 text-sm text-red-600 transition-colors hover:bg-red-50"
             >
               <CiLogout size={18} />
               <span>Log out</span>

@@ -1,16 +1,15 @@
 import { FaRegEnvelope } from "react-icons/fa";
 import { LuPhone } from "react-icons/lu";
-import Input from "../components/Input";
-import Button from "../components/Button";
+import { Input, Button } from "../components";
 
-export default function Contact() {
+export function Contact() {
   return (
-    <main className="flex gap-4 justify-center mt-20 page-container items-center  max-sm:flex-col">
-      <div className="flex flex-col p-6 gap-4 w-80 shrink-0 shadow-md">
-        <div className=" flex flex-col gap-3 border-b pb-5">
+    <main className="flex items-center justify-center gap-4 mt-20 page-container max-sm:flex-col">
+      <div className="flex flex-col gap-4 p-6 shadow-md w-80 shrink-0">
+        <div className="flex flex-col gap-3 pb-5 border-b ">
           <div className="flex items-center gap-3">
             <span>
-              <LuPhone className="bg-red-700 text-white text-5xl rounded-full p-3" />
+              <LuPhone className="p-3 text-5xl text-white bg-red-700 rounded-full" />
             </span>
             <h1 className="font-semibold">Call To Us</h1>
           </div>
@@ -20,7 +19,7 @@ export default function Contact() {
         <div className="flex flex-col gap-3">
           <div className="flex items-center gap-3">
             <span>
-              <FaRegEnvelope className="bg-red-700 text-white text-5xl rounded-full p-3" />
+              <FaRegEnvelope className="p-3 text-5xl text-white bg-red-700 rounded-full" />
             </span>
             <h1>Write To Us</h1>
           </div>
@@ -29,7 +28,7 @@ export default function Contact() {
         </div>
       </div>
 
-      <div className="flex flex-col gap-5 w-auto shadow-md p-5 max-sm:flex-col">
+      <div className="flex flex-col w-auto gap-5 p-5 shadow-md max-sm:flex-col">
         <div className="flex gap-5 max-sm:flex-col">
           <Input
             type="text"
@@ -57,7 +56,7 @@ export default function Contact() {
             placeholder="Your Message"
             className="w-full h-50 p-2 bg-[#EFF0F6] placeholder=[#A0A3BD] outline-none"
           />
-          <Button className="bg-red-600 text-white w-60 hover:bg-red-600/70">
+          <Button className="text-white bg-red-600 w-60 hover:bg-red-600/70">
             Send Message
           </Button>
         </div>

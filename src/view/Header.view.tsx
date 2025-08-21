@@ -1,15 +1,18 @@
 import { useState } from "react";
-import Logo from "./Logo";
-import NavLinks from "./NavLinks";
-import SearchBar from "./SearchBar";
-import FavouriteButton from "./FavouriteButton";
-import CartButton from "./CartButton";
-import MobileSidebar from "./MobileSidebar";
-import AccountIcon from "./AccountIcon";
-import { useUser } from "../hooks/useUser";
-import { Burger } from "./Burger";
 
-export default function Header() {
+import { useUser } from "../hooks/useUser";
+import {
+  Logo,
+  NavLinks,
+  SearchBar,
+  FavouriteButton,
+  CartButton,
+  MobileSidebar,
+  AccountIcon,
+  Burger,
+} from "../components";
+
+export function Header() {
   const [open, setOpen] = useState(false);
   const { user } = useUser();
 

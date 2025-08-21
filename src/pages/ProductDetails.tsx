@@ -1,12 +1,10 @@
 import { SwiperSlide } from "swiper/react";
-import Card from "../components/Card";
-import ProductSlide from "../components/ProductSlide";
-import Thambnail from "../components/Thambnail";
+import { Card, ProductSlide, Thambnail } from "../components";
 import { useEffect, useState } from "react";
 import { useLocation } from "react-router";
 import type { Product } from "../types/productCard";
 
-export default function ProductDetails() {
+export function ProductDetails() {
   const { state } = useLocation();
   const product: Product | undefined = state?.product as Product | undefined;
 
@@ -48,7 +46,7 @@ export default function ProductDetails() {
         renderItem={(product) => (
           <SwiperSlide key={product.id}>
             {loading ? (
-              <div className="h-60 rounded-lg bg-gray-100 animate-pulse" />
+              <div className="bg-gray-100 rounded-lg h-60 animate-pulse" />
             ) : (
               <Card product={product as Product} />
             )}

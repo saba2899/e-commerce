@@ -1,9 +1,13 @@
 import { useEffect, useState } from "react";
+
 import { createPortal } from "react-dom";
-import Input from "./Input";
-import Button from "./Button";
+
+import { Input, Button } from "../components";
+
 import { logIn } from "../services/auth";
+
 import { useUser } from "../hooks/useUser";
+
 import singup from "../assets/signup.avif";
 
 type LoginModalProps = {
@@ -11,7 +15,7 @@ type LoginModalProps = {
   onClose: () => void;
 };
 
-export default function LoginModal({ open, onClose }: LoginModalProps) {
+export function LoginModal({ open, onClose }: LoginModalProps) {
   const { setUser } = useUser();
   const [email, setEmail] = useState("");
   const [password, setPassword] = useState("");
@@ -67,17 +71,17 @@ export default function LoginModal({ open, onClose }: LoginModalProps) {
         aria-hidden="true"
       />
       <div className="relative z-10 w-full max-w-3xl max-h-[90vh] pt-10 pb-10 rounded-lg bg-white shadow-2xl overflow-hidden">
-        <div className="flex h-full flex-col md:flex-row pl-2 pr-2 items-stretch">
+        <div className="flex flex-col items-stretch h-full pl-2 pr-2 md:flex-row">
           <div className="hidden md:flex md:w-1/2 bg-gray-50">
             <img
               src={singup}
               alt="Login"
-              className="h-full w-full object-cover"
+              className="object-cover w-full h-full"
             />
           </div>
-          <div className="w-full md:w-1/2 p-8 md:p-10 overflow-auto">
-            <h2 className="text-2xl font-semibold mb-1">Log in to Exclusive</h2>
-            <p className="text-sm text-gray-600 mb-6">
+          <div className="w-full p-8 overflow-auto md:w-1/2 md:p-10">
+            <h2 className="mb-1 text-2xl font-semibold">Log in to Exclusive</h2>
+            <p className="mb-6 text-sm text-gray-600">
               Enter your details below
             </p>
             <form className="space-y-4" onSubmit={handleLogin}>
@@ -86,14 +90,14 @@ export default function LoginModal({ open, onClose }: LoginModalProps) {
                 placeholder="Email"
                 value={email}
                 onChange={(e) => setEmail(e.target.value)}
-                className="w-full border rounded-md px-3 py-2"
+                className="w-full px-3 py-2 border rounded-md"
               />
               <Input
                 type="password"
                 placeholder="Password"
                 value={password}
                 onChange={(e) => setPassword(e.target.value)}
-                className="w-full border rounded-md px-3 py-2"
+                className="w-full px-3 py-2 border rounded-md"
               />
               {error && <div className="text-sm text-red-600">{error}</div>}
               <div className="flex items-center justify-between pt-2">
@@ -103,7 +107,7 @@ export default function LoginModal({ open, onClose }: LoginModalProps) {
                 <div className="flex gap-3">
                   <Button
                     type="button"
-                    className="px-4 py-2 rounded-md border"
+                    className="px-4 py-2 border rounded-md"
                     onClick={onClose}
                   >
                     Cancel
@@ -111,7 +115,7 @@ export default function LoginModal({ open, onClose }: LoginModalProps) {
                   <Button
                     type="submit"
                     disabled={loading}
-                    className="px-5 py-2 rounded-md bg-red-500 text-white disabled:opacity-60"
+                    className="px-5 py-2 text-white bg-red-500 rounded-md disabled:opacity-60"
                   >
                     {loading ? "Logging in..." : "Log in"}
                   </Button>

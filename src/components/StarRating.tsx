@@ -5,7 +5,7 @@ type Props = {
   size?: "sm" | "md";
 };
 
-export default function StarRating({ rating, size = "sm" }: Props) {
+export function StarRating({ rating, size = "sm" }: Props) {
   const maxStars = 5;
   const sizeClass = size === "sm" ? "text-base" : "text-xl";
 

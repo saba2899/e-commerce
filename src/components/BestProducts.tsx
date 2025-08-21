@@ -1,13 +1,10 @@
 import { SwiperSlide } from "swiper/react";
-import ProductSlide from "./ProductSlide";
-import SectionTitle from "./SectionTitle";
-import Tag from "./Tag";
-import Card from "./Card";
-import Button from "./Button";
+import { ProductSlide, SectionTitle, Tag, Card, Button } from "../components";
+
 import { useEffect, useState } from "react";
 import type { Product } from "../types/productCard";
 
-export default function BestProducts() {
+export function BestProducts() {
   const [items, setItems] = useState<Product[]>([]);
   const [loading, setLoading] = useState(true);
 
@@ -43,7 +40,7 @@ export default function BestProducts() {
           <Tag> This Month</Tag>
           <SectionTitle>Best Selling Products</SectionTitle>
         </div>
-        <Button className="w-40 bg-red-400 text-white hover:bg-red-500">
+        <Button className="w-40 text-white bg-red-400 hover:bg-red-500">
           View All
         </Button>
       </div>
@@ -53,7 +50,7 @@ export default function BestProducts() {
         renderItem={(product) => (
           <SwiperSlide key={product.id}>
             {loading ? (
-              <div className="h-60 rounded-lg bg-gray-100 animate-pulse" />
+              <div className="bg-gray-100 rounded-lg h-60 animate-pulse" />
             ) : (
               <Card product={product as Product} />
             )}

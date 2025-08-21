@@ -12,45 +12,42 @@ interface ProductCardProps {
   discount?: number;
 }
 
-const ProductCard = ({ 
-  name, 
-  price, 
-  originalPrice, 
-  image, 
-  category, 
-  isNew, 
-  discount 
+export const ProductCard = ({
+  name,
+  price,
+  originalPrice,
+  image,
+  category,
+  isNew,
+  discount,
 }: ProductCardProps) => {
   const [isFavorite, setIsFavorite] = useState(false);
 
   return (
-    <div className="bg-white rounded-2xl shadow-sm hover:shadow-md transition-all duration-300 overflow-hidden group">
-      {/* Image Container */}
-      <div className="relative aspect-square bg-gray-50 overflow-hidden">
-        <img 
-          src={image} 
+    <div className="overflow-hidden transition-all duration-300 bg-white shadow-sm rounded-2xl hover:shadow-md group">
+      <div className="relative overflow-hidden aspect-square bg-gray-50">
+        <img
+          src={image}
           alt={name}
-          className="w-full h-full object-cover group-hover:scale-105 transition-transform duration-300"
+          className="object-cover w-full h-full transition-transform duration-300 group-hover:scale-105"
         />
-        
-        {/* Badges */}
-        <div className="absolute top-3 left-3 flex flex-col gap-2">
+
+        <div className="absolute flex flex-col gap-2 top-3 left-3">
           {isNew && (
-            <span className="bg-green-500 text-white text-xs font-medium px-2 py-1 rounded-full">
+            <span className="px-2 py-1 text-xs font-medium text-white bg-green-500 rounded-full">
               New
             </span>
           )}
           {discount && (
-            <span className="bg-red-500 text-white text-xs font-medium px-2 py-1 rounded-full">
+            <span className="px-2 py-1 text-xs font-medium text-white bg-red-500 rounded-full">
               -{discount}%
             </span>
           )}
         </div>
 
-        {/* Favorite Button */}
         <button
           onClick={() => setIsFavorite(!isFavorite)}
-          className="absolute top-3 right-3 p-2 bg-white/90 backdrop-blur-sm rounded-full hover:bg-white transition-colors duration-200"
+          className="absolute p-2 transition-colors duration-200 rounded-full top-3 right-3 bg-white/90 backdrop-blur-sm hover:bg-white"
         >
           {isFavorite ? (
             <HiHeart className="w-5 h-5 text-red-500" />
@@ -59,31 +56,27 @@ const ProductCard = ({
           )}
         </button>
 
-        {/* Add to Cart Button - Shows on hover */}
-        <div className="absolute bottom-3 left-3 right-3 opacity-0 group-hover:opacity-100 transition-opacity duration-300">
-          <button className="w-full bg-purple-600 hover:bg-purple-700 text-white py-2 px-4 rounded-xl font-medium flex items-center justify-center gap-2 transition-colors duration-200">
+        <div className="absolute transition-opacity duration-300 opacity-0 bottom-3 left-3 right-3 group-hover:opacity-100">
+          <button className="flex items-center justify-center w-full gap-2 px-4 py-2 font-medium text-white transition-colors duration-200 bg-purple-600 hover:bg-purple-700 rounded-xl">
             <HiPlus className="w-4 h-4" />
             Add to Cart
           </button>
         </div>
       </div>
 
-      {/* Content */}
       <div className="p-4">
         {category && (
-          <p className="text-xs text-gray-500 uppercase tracking-wide mb-1">
+          <p className="mb-1 text-xs tracking-wide text-gray-500 uppercase">
             {category}
           </p>
         )}
-        
-        <h3 className="font-medium text-gray-900 mb-2 line-clamp-2 text-sm leading-5">
+
+        <h3 className="mb-2 text-sm font-medium leading-5 text-gray-900 line-clamp-2">
           {name}
         </h3>
-        
+
         <div className="flex items-center gap-2">
-          <span className="text-lg font-bold text-purple-600">
-            ${price}
-          </span>
+          <span className="text-lg font-bold text-purple-600">${price}</span>
           {originalPrice && originalPrice > price && (
             <span className="text-sm text-gray-500 line-through">
               ${originalPrice}
@@ -94,5 +87,3 @@ const ProductCard = ({
     </div>
   );
 };
-
-export default ProductCard;

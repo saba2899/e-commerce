@@ -6,7 +6,7 @@ import {
 } from "react-icons/fa";
 import { FiSend } from "react-icons/fi";
 
-export default function Footer() {
+export function Footer() {
   return (
     <footer className="mt-24 text-white bg-black pb-22">
       <div className="grid gap-10 py-12 page-container md:grid-cols-5">

@@ -1,12 +1,9 @@
-// src/components/SalesCard.tsx
 import { useEffect, useState } from "react";
 import { SwiperSlide } from "swiper/react";
-import ProductSlide from "./ProductSlide";
-import Card from "./Card";
-import SalesTime from "./SalesTime";
+import { ProductSlide, Card, SalesTime } from "../components";
 import type { Product } from "../types/productCard";
 
-export default function SalesCard() {
+export function SalesCard() {
   const [items, setItems] = useState<Product[]>([]);
   const [loading, setLoading] = useState(true);
 
@@ -41,7 +38,7 @@ export default function SalesCard() {
         items={skeletonItems}
         renderItem={(p) => (
           <SwiperSlide key={String(p.id)}>
-            <div className="h-60 rounded-lg bg-gray-100 animate-pulse" />
+            <div className="bg-gray-100 rounded-lg h-60 animate-pulse" />
           </SwiperSlide>
         )}
         titleSlot={<SalesTime />}
