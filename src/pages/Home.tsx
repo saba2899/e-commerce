@@ -10,7 +10,7 @@ import BenefitsRow from "../components/BenefitsRow.tsx";
 
 function Home() {
   return (
-    <div className="flex flex-col gap-15">
+    <div className="flex flex-col gap-20 ">
       <div className="flex items-start gap-6 mt-2 page-container">
         <SideNav />
         <div className="min-w-8 ">

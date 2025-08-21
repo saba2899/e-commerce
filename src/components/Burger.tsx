@@ -12,23 +12,20 @@ export function Burger({
       aria-expanded={isOpen}
       aria-label="Toggle menu"
       onClick={onClick}
-      className="relative grid h-10 w-10 place-items-center text-black"
+      className="relative grid w-10 h-10 text-black place-items-center"
     >
-      {/* top */}
       <span
         className={clsx(
           "absolute block h-0.5 w-6 bg-current transition-transform duration-300",
           isOpen ? "translate-y-0 rotate-45" : "-translate-y-2"
         )}
       />
-      {/* middle */}
       <span
         className={clsx(
           "absolute block h-0.5 w-6 bg-current transition-opacity duration-300",
           isOpen ? "opacity-0" : "opacity-100"
         )}
       />
-      {/* bottom */}
       <span
         className={clsx(
           "absolute block h-0.5 w-6 bg-current transition-transform duration-300",

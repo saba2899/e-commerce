@@ -5,9 +5,10 @@ import TeamCard from "./TeamCard";
 
 export default function TeamMembers() {
   return (
-    <section className="page-container  w-full  mt-10 px-4 ">
+    <section className="w-full px-4 mt-10 page-container ">
       <div>
         <Swiper
+          className="hero-swiper"
           slidesPerView={3}
           spaceBetween={20}
           pagination={{

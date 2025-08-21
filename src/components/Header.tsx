@@ -15,7 +15,7 @@ export default function Header() {
 
   return (
     <>
-      <header className="sticky max-sm:w-full  top-0 z-[1000] bg-white/90 backdrop-blur border-b p-2">
+      <header className="fixed w-screen top-0 z-[10000] p-2 border-b max-sm:w-full bg-white/90 backdrop-blur">
         <div className="flex items-center justify-between gap-4 py-4 page-container">
           <div className="flex items-center gap-3">
             <div className="md:hidden">

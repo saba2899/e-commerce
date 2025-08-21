@@ -31,22 +31,21 @@ export async function signUp(
 ): Promise<PublicUser> {
   const users = readUsers();
 
-  // Basic server-side validations
   const nameRegex = /^[\p{L}][\p{L}'-]{1,}(?: [\p{L}'-]{2,})*$/u;
   const emailRegex = /^[^\s@]+@[^\s@]+\.[^\s@]{2,}$/i;
   const passwordRegex = /^(?=.*[a-z])(?=.*[A-Z])(?=.*\d)(?=.*[^\w\s]).{8,}$/;
 
-  if (!nameRegex.test(name.trim())) throw new Error("სახელი არასწორია");
-  if (!emailRegex.test(email.trim())) throw new Error("ელფოსტა არასწორია");
+  if (!nameRegex.test(name.trim())) throw new Error("Name is incorrect.");
+  if (!emailRegex.test(email.trim())) throw new Error("Email is invalid.");
   if (!passwordRegex.test(password))
     throw new Error(
-      "პაროლი უნდა შეიცავდეს დიდ და პატარა ასოებს, რიცხვს და სიმბოლოს და იყოს მინ. 8 სიმბოლო"
+      "The password must contain uppercase and lowercase letters, numbers, and symbols and be at least 8 characters long."
     );
 
   const exists = users.some(
     (u) => u.email.toLowerCase() === email.toLowerCase()
   );
-  if (exists) throw new Error("ამ ელფოსტით მომხმარებელი უკვე არსებობს");
+  if (exists) throw new Error("A user with this email address already exists.");
 
   const passwordHash = await sha256(password);
 
@@ -71,7 +70,7 @@ export async function logIn(
   password: string
 ): Promise<PublicUser> {
   const emailRegex = /^[^\s@]+@[^\s@]+\.[^\s@]{2,}$/i;
-  if (!emailRegex.test(email.trim())) throw new Error("ელფოსტა არასწორია");
+  if (!emailRegex.test(email.trim())) throw new Error("Email is invalid.");
   const users = readUsers();
   const hash = await sha256(password);
 
@@ -79,7 +78,7 @@ export async function logIn(
     (u) =>
       u.email.toLowerCase() === email.toLowerCase() && u.passwordHash === hash
   );
-  if (!user) throw new Error("ელფოსტა ან პაროლი არასწორია");
+  if (!user) throw new Error("Email or password is incorrect.");
 
   const token = crypto.randomUUID();
   localStorage.setItem(SESSION_KEY, JSON.stringify({ token, userId: user.id }));
