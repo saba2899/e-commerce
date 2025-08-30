@@ -12,7 +12,7 @@ export function SalesCard() {
       try {
         const res = await fetch("https://fakestoreapi.com/products");
         const data: Product[] = await res.json();
-        setItems(data.slice(0, 8));
+        setItems(data.slice(0, 20));
       } catch {
         setItems([]);
       } finally {
@@ -21,7 +21,7 @@ export function SalesCard() {
     })();
   }, []);
 
-  const skeletonItems: Product[] = Array.from({ length: 4 }).map((_, i) => ({
+  const skeletonItems: Product[] = Array.from({ length: 20 }).map((_, i) => ({
     id: -1 - i,
     title: "",
     price: 0,

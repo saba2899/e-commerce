@@ -1,11 +1,6 @@
 import { Outlet } from "react-router";
-import {
-  Footer,
-  Header,
-  BottomNavigation,
-  BackToTop,
-  SCrollToTop,
-} from "../view";
+import { Footer, Header, BottomNavigation } from "../view";
+import { SCrollToTop, BackToTop } from "../components";
 import { UserProvider } from "../context/UserContextProvider";
 
 export const MainLayout = () => {

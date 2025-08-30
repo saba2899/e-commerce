@@ -1,6 +1,6 @@
 import { AccountSideNav, Input, Button } from "../components";
 import { useUser } from "../hooks/useUser";
-import { useState } from "react";
+import { useEffect, useState } from "react";
 import { changePassword, updateNamePartsIfMissing } from "../services/auth";
 
 export function Profile() {
@@ -72,6 +72,10 @@ export function Profile() {
       setError(message);
     }
   }
+
+  useEffect(function () {
+    document.title = `Exclusive | Profile`;
+  }, []);
 
   return (
     <div className="max-w-6xl px-4 py-8 mx-auto">

@@ -1,7 +1,7 @@
 import type React from "react";
 import singup from "../assets/signup.avif";
 import { Button, Input } from "../components";
-import { useState } from "react";
+import { useEffect, useState } from "react";
 import { logIn } from "../services/auth";
 import { useNavigate } from "react-router";
 import { useUser } from "../hooks/useUser";
@@ -38,6 +38,10 @@ export function LogIn() {
       } else setError("An unknown error occurred.");
     }
   }
+
+  useEffect(function () {
+    document.title = `Exclusive | Log in`;
+  }, []);
 
   return (
     <section className="flex items-center justify-center gap-20 mx-auto mt-20 page-container">

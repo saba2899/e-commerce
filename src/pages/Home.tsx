@@ -1,3 +1,4 @@
+import { useEffect } from "react";
 import {
   Button,
   Category,
@@ -11,6 +12,9 @@ import {
 } from "../components/";
 
 export function Home() {
+  useEffect(function () {
+    document.title = `Exclusive | Home`;
+  }, []);
   return (
     <div className="flex flex-col gap-20 ">
       <div className="flex items-start gap-6 mt-2 page-container">

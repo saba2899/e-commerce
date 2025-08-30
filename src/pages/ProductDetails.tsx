@@ -11,12 +11,21 @@ export function ProductDetails() {
   const [related, setRelated] = useState<Product[]>([]);
   const [loading, setLoading] = useState(true);
 
+  useEffect(
+    function () {
+      if (!product?.title) return;
+      document.title = `Exclusive | ${product.title}`;
+    },
+    [product?.title]
+  );
+
   useEffect(() => {
     (async () => {
       try {
         const res = await fetch("https://fakestoreapi.com/products");
         const data: Product[] = await res.json();
-        setRelated(data.slice(0, 8));
+
+        setRelated(data.slice(0));
       } catch (e) {
         console.error(e);
         setRelated([]);

@@ -1,7 +1,7 @@
 import { Link, useNavigate } from "react-router";
 import singup from "../assets/signup.avif";
 import { Button, Input } from "../components";
-import { useState } from "react";
+import { useEffect, useState } from "react";
 import { signUp } from "../services/auth";
 import { useUser } from "../hooks/useUser";
 
@@ -18,7 +18,6 @@ export function SignUp() {
     e.preventDefault();
     setError(null);
 
-    // Validation regex
     const nameRegex = /^[\p{L}][\p{L}'-]{1,}(?: [\p{L}'-]{2,})*$/u; // at least 2 letters, allows Unicode, hyphen, apostrophe; optional surname
     const emailRegex = /^[^\s@]+@[^\s@]+\.[^\s@]{2,}$/i;
     const passwordRegex = /^(?=.*[a-z])(?=.*[A-Z])(?=.*\d)(?=.*[^\w\s]).{8,}$/;
@@ -52,6 +51,10 @@ export function SignUp() {
       }
     }
   }
+
+  useEffect(function () {
+    document.title = `Exclusive | Sign up`;
+  }, []);
 
   return (
     <section className="flex items-center justify-center gap-20 mx-auto mt-20 page-container">
@@ -90,7 +93,7 @@ export function SignUp() {
           type="submit"
           className="w-full mt-5 text-white bg-red-500 hover:bg-red-400"
         >
-          Create ACcount
+          Create Account
         </Button>
         <div className="flex items-center justify-center mt-3">
           <p>

@@ -37,3 +37,5 @@ export * from "./Tag";
 export * from "./TeamCard";
 export * from "./TeamMembers";
 export * from "./Thambnail";
+export * from "./ScrollToTop";
+export * from "./BackToTop";

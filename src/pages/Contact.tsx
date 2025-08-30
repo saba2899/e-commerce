@@ -1,8 +1,12 @@
 import { FaRegEnvelope } from "react-icons/fa";
 import { LuPhone } from "react-icons/lu";
 import { Input, Button } from "../components";
+import { useEffect } from "react";
 
 export function Contact() {
+  useEffect(function () {
+    document.title = `Exclusive | Contact`;
+  }, []);
   return (
     <main className="flex items-center justify-center gap-4 mt-20 page-container max-sm:flex-col">
       <div className="flex flex-col gap-4 p-6 shadow-md w-80 shrink-0">
