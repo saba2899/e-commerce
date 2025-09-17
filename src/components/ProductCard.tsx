@@ -1,8 +1,10 @@
 import { HiHeart, HiOutlineHeart, HiPlus } from "react-icons/hi2";
-import { useState } from "react";
+import { useUser } from "../context/useUser";
+import { useFavorites } from "../context/favorites-context";
+import { useCart } from "../context/cart-context";
 
 interface ProductCardProps {
-  id: string;
+  id: string | number;
   name: string;
   price: number;
   originalPrice?: number;
@@ -13,6 +15,7 @@ interface ProductCardProps {
 }
 
 export const ProductCard = ({
+  id,
   name,
   price,
   originalPrice,
@@ -21,7 +24,9 @@ export const ProductCard = ({
   isNew,
   discount,
 }: ProductCardProps) => {
-  const [isFavorite, setIsFavorite] = useState(false);
+  const { user } = useUser();
+  const { toggleFavorite, isFavorite: isFav } = useFavorites();
+  const { addItem } = useCart();
 
   return (
     <div className="overflow-hidden transition-all duration-300 bg-white shadow-sm rounded-2xl hover:shadow-md group">
@@ -46,10 +51,17 @@ export const ProductCard = ({
         </div>
 
         <button
-          onClick={() => setIsFavorite(!isFavorite)}
+          onClick={() => {
+            if (!user) {
+              // When not logged in, do not modify global favorites
+              alert("Please log in to save favorites.");
+              return;
+            }
+            toggleFavorite(id);
+          }}
           className="absolute p-2 transition-colors duration-200 rounded-full top-3 right-3 bg-white/90 backdrop-blur-sm hover:bg-white"
         >
-          {isFavorite ? (
+          {user && isFav(id) ? (
             <HiHeart className="w-5 h-5 text-red-500" />
           ) : (
             <HiOutlineHeart className="w-5 h-5 text-gray-600" />
@@ -57,7 +69,17 @@ export const ProductCard = ({
         </button>
 
         <div className="absolute transition-opacity duration-300 opacity-0 bottom-3 left-3 right-3 group-hover:opacity-100">
-          <button className="flex items-center justify-center w-full gap-2 px-4 py-2 font-medium text-white transition-colors duration-200 bg-purple-600 hover:bg-purple-700 rounded-xl">
+          <button
+            onClick={() => {
+              if (!user) {
+                // This component doesn't have LoginModal; rely on global flow
+                alert("Please log in to add items to the cart.");
+                return;
+              }
+              addItem({ id: name, title: name, price, image, description: "", category: "", rating: { rate: 0, count: 0 } } as any, 1);
+            }}
+            className="flex items-center justify-center w-full gap-2 px-4 py-2 font-medium text-white transition-colors duration-200 bg-purple-600 hover:bg-purple-700 rounded-xl"
+          >
             <HiPlus className="w-4 h-4" />
             Add to Cart
           </button>

@@ -82,13 +82,44 @@ export async function logIn(
 
   const token = crypto.randomUUID();
   localStorage.setItem(SESSION_KEY, JSON.stringify({ token, userId: user.id }));
+  notifyAuthChange();
 
   const { ...pub } = user;
   return pub;
 }
 
+// Custom event for auth state changes
+const AUTH_EVENT = 'authStateChange';
+
+function notifyAuthChange() {
+  window.dispatchEvent(new Event(AUTH_EVENT));
+}
+
 export function logOut() {
+  // Determine current user before removing the session
+  const sess = localStorage.getItem(SESSION_KEY);
+  if (sess) {
+    try {
+      const { userId } = JSON.parse(sess) as { token: string; userId: string };
+      // Remove per-user favorites so wishlist is not saved after leaving the site
+      localStorage.removeItem(`favorites_ids_${userId}`);
+    } catch {}
+  }
+  // Also remove any legacy global favorites key
+  localStorage.removeItem("favorites_ids");
+
+  // Notify cart to clear UI without wiping persisted per-user cart
+  try {
+    window.dispatchEvent(new Event('cartLoggingOut'));
+  } catch {}
+
+  // Finally, remove the session and notify
   localStorage.removeItem(SESSION_KEY);
+  // Inform listeners that favorites should be cleared immediately
+  try {
+    window.dispatchEvent(new Event('favoritesReset'));
+  } catch {}
+  notifyAuthChange();
 }
 
 export function getCurrentUser(): PublicUser | null {

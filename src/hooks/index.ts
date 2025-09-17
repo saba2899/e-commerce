@@ -1,2 +1,2 @@
 export * from "./useCountdown";
-export * from "./useUser";
+export * from "../context/useUser";

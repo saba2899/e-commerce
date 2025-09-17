@@ -10,6 +10,8 @@ import {
   Profile,
   Favorites,
 } from "./pages";
+import CartPage from "./pages/Cart";
+import CheckoutPage from "./pages/Checkout";
 
 import { MainLayout } from "./Layout/Main.Layout";
 
@@ -47,6 +49,14 @@ export const router = createBrowserRouter([
       {
         path: "/favorites",
         element: <Favorites />,
+      },
+      {
+        path: "/cart",
+        element: <CartPage />,
+      },
+      {
+        path: "/checkout",
+        element: <CheckoutPage />,
       },
       {
         path: "/profile",

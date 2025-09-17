@@ -3,7 +3,7 @@ import singup from "../assets/signup.avif";
 import { Button, Input } from "../components";
 import { useEffect, useState } from "react";
 import { signUp } from "../services/auth";
-import { useUser } from "../hooks/useUser";
+import { useUser } from "../context/useUser";
 
 export function SignUp() {
   const [name, setName] = useState("");

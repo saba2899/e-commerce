@@ -1,7 +1,16 @@
 import { AccountSideNav, Input, Button } from "../components";
-import { useUser } from "../hooks/useUser";
+import { useUser } from "../context/useUser";
 import { useEffect, useState } from "react";
 import { changePassword, updateNamePartsIfMissing } from "../services/auth";
+
+type FormErrors = {
+  firstName?: string;
+  lastName?: string;
+  street?: string;
+  city?: string;
+  phone?: string;
+  password?: string;
+};
 
 export function Profile() {
   const { user, setUser } = useUser();
@@ -12,9 +21,113 @@ export function Profile() {
   const [error, setError] = useState<string | null>(null);
   const [firstNameDraft, setFirstNameDraft] = useState("");
   const [lastNameDraft, setLastNameDraft] = useState("");
-  const [addressDraft, setAddressDraft] = useState("");
+  const [companyDraft, setCompanyDraft] = useState("");
+  const [streetDraft, setStreetDraft] = useState("");
+  const [aptDraft, setAptDraft] = useState("");
+  const [cityDraft, setCityDraft] = useState("");
+  const [phoneDraft, setPhoneDraft] = useState("");
+  const [formErrors, setFormErrors] = useState<FormErrors>({});
+  // State for edit modes
+  const [canEditFirst] = useState(true);
+  const [canEditLast] = useState(true);
+  const [canEditStreet] = useState(true);
 
-  async function onSave(e: React.FormEvent) {
+  // Initialize form fields when user data is available
+  useEffect(() => {
+    if (user) {
+      const nameParts = user.name?.split(" ") || [];
+      setFirstNameDraft(nameParts[0] || "");
+      setLastNameDraft(nameParts.slice(1).join(" ") || "");
+      setStreetDraft(user.address || "");
+
+      // Load additional profile info from localStorage
+      const profileKey = `profile_info_${user.id}`;
+      const savedProfile = localStorage.getItem(profileKey);
+      if (savedProfile) {
+        try {
+          const data = JSON.parse(savedProfile);
+          setCompanyDraft(data.company || "");
+          setAptDraft(data.apt || "");
+          setCityDraft(data.city || "");
+          setPhoneDraft(data.phone || "");
+        } catch (e) {
+          console.error("Failed to load profile data", e);
+        }
+      }
+    }
+  }, [user]);
+
+  function validateForm() {
+    const errors: FormErrors = {};
+    if (firstNameDraft.trim().length < 2) {
+      errors.firstName = "First name must be at least 2 characters";
+    }
+    if (lastNameDraft.trim().length < 2) {
+      errors.lastName = "Last name must be at least 2 characters";
+    }
+    if (streetDraft.trim().length < 3) {
+      errors.street = "Street address is required";
+    }
+    if (cityDraft.trim().length < 2) {
+      errors.city = "City is required";
+    }
+    if (!/^[+]?[\d\s-]{6,}$/.test(phoneDraft.trim())) {
+      errors.phone = "Enter a valid phone number";
+    }
+    setFormErrors(errors);
+    return Object.keys(errors).length === 0;
+  }
+
+  async function savePersonalInfo() {
+    if (!user) {
+      setError("User not authenticated");
+      return;
+    }
+
+    try {
+      // Update the user's name and address in the auth system
+      // Only send fields that are currently missing to avoid backend rejections
+      const nameTokens = (user.name || "").trim().split(/\s+/).filter(Boolean);
+      const currentFirst = nameTokens[0] ?? "";
+      const currentLast = nameTokens.slice(1).join(" ");
+      const parts: { firstName?: string; lastName?: string; address?: string } =
+        {};
+      const firstTrim = firstNameDraft.trim();
+      const lastTrim = lastNameDraft.trim();
+      const addrTrim = streetDraft.trim();
+      if (!currentFirst && firstTrim) parts.firstName = firstTrim;
+      if (!currentLast && lastTrim) parts.lastName = lastTrim;
+      if (!user.address && addrTrim) parts.address = addrTrim;
+
+      const updatedUser = updateNamePartsIfMissing(user.id, parts);
+
+      // Save additional profile info to localStorage
+      const profileKey = `profile_info_${user.id}`;
+      const profileData = {
+        company: companyDraft.trim(),
+        apt: aptDraft.trim(),
+        city: cityDraft.trim(),
+        phone: phoneDraft.trim(),
+      };
+      localStorage.setItem(profileKey, JSON.stringify(profileData));
+
+      // Update the user context with the new data from auth
+      setUser({
+        ...updatedUser,
+      });
+
+      setStatus("Personal information updated successfully");
+      setError(null);
+      setFormErrors({});
+    } catch (err: unknown) {
+      const message =
+        err instanceof Error ? err.message : "Failed to update profile";
+      setError(message);
+      setStatus(null);
+    }
+  }
+
+  async function onSavePassword(e: React.FormEvent) {
     e.preventDefault();
     setStatus(null);
     setError(null);
@@ -46,34 +159,7 @@ export function Profile() {
     }
   }
 
-  const firstName = user?.name?.split(" ")[0] || "";
-  const lastName = user?.name?.split(" ").slice(1).join(" ") || "";
-
-  const canEditFirst = !firstName;
-  const canEditLast = !lastName;
-  const canEditAddress = !user?.address;
-
-  async function saveMissingNameParts() {
-    if (!user) return;
-    try {
-      const updated = updateNamePartsIfMissing(user.id, {
-        firstName: canEditFirst ? firstNameDraft : undefined,
-        lastName: canEditLast ? lastNameDraft : undefined,
-        address: canEditAddress ? addressDraft : undefined,
-      });
-      setUser(updated);
-      setStatus("Profile updated");
-      setAddressDraft("");
-    } catch (err: unknown) {
-      const message =
-        err && typeof err === "object" && "message" in err
-          ? String((err as { message: string }).message)
-          : "Failed to update profile";
-      setError(message);
-    }
-  }
-
-  useEffect(function () {
+  useEffect(() => {
     document.title = `Exclusive | Profile`;
   }, []);
 
@@ -93,69 +179,139 @@ export function Profile() {
             </div>
           )}
 
-          <form
-            onSubmit={onSave}
-            className="grid max-w-3xl grid-cols-1 gap-4 md:grid-cols-2"
-          >
-            <div>
-              <label className="block mb-1 text-sm">First Name</label>
-              <Input
-                value={canEditFirst ? firstNameDraft : firstName}
-                onChange={(e) =>
-                  canEditFirst && setFirstNameDraft(e.target.value)
-                }
-                readOnly={!canEditFirst}
-                placeholder="First Name"
-                className={
-                  canEditFirst
-                    ? "w-full border rounded-md px-3 py-2"
-                    : "w-full border rounded-md px-3 py-2 bg-gray-50 cursor-not-allowed"
-                }
-              />
-            </div>
-            <div>
-              <label className="block mb-1 text-sm">Last Name</label>
-              <Input
-                value={canEditLast ? lastNameDraft : lastName}
-                onChange={(e) =>
-                  canEditLast && setLastNameDraft(e.target.value)
-                }
-                readOnly={!canEditLast}
-                placeholder="Last Name"
-                className={
-                  canEditLast
-                    ? "w-full border rounded-md px-3 py-2"
-                    : "w-full border rounded-md px-3 py-2 bg-gray-50 cursor-not-allowed"
-                }
-              />
-            </div>
-
-            <div className="md:col-span-1">
-              <label className="block mb-1 text-sm">Email</label>
-              <Input
-                value={user?.email || ""}
-                readOnly
-                className="w-full px-3 py-2 border rounded-md cursor-not-allowed bg-gray-50"
-              />
-            </div>
-            <div className="md:col-span-1">
-              <label className="block mb-1 text-sm">Address</label>
-              <Input
-                value={canEditAddress ? addressDraft : user?.address || ""}
-                onChange={(e) =>
-                  canEditAddress && setAddressDraft(e.target.value)
-                }
-                readOnly={!canEditAddress}
-                placeholder="Kingston, 5236, United State"
-                className={
-                  canEditAddress
-                    ? "w-full border rounded-md px-3 py-2"
-                    : "w-full border rounded-md px-3 py-2 bg-gray-50 cursor-not-allowed"
-                }
-              />
-            </div>
-
+          <div className="grid max-w-3xl grid-cols-1 gap-4 md:grid-cols-2">
             <div className="mt-4 md:col-span-2">
+              <label className="block mb-2 text-sm">Profile Information</label>
+              <div className="space-y-4">
+                <div className="grid grid-cols-1 gap-4 md:grid-cols-2">
+                  <div>
+                    <label className="block mb-1 text-sm font-medium text-gray-700">
+                      First Name *
+                    </label>
+                    <Input
+                      value={firstNameDraft}
+                      onChange={(e) => setFirstNameDraft(e.target.value)}
+                      disabled={!canEditFirst}
+                      placeholder="Enter your first name"
+                      error={!!formErrors.firstName}
+                    />
+                    {formErrors.firstName && (
+                      <p className="mt-1 text-sm text-red-600">
+                        {formErrors.firstName}
+                      </p>
+                    )}
+                  </div>
+                  <div>
+                    <label className="block mb-1 text-sm font-medium text-gray-700">
+                      Last Name *
+                    </label>
+                    <Input
+                      value={lastNameDraft}
+                      onChange={(e) => setLastNameDraft(e.target.value)}
+                      disabled={!canEditLast}
+                      placeholder="Enter your last name"
+                      error={!!formErrors.lastName}
+                    />
+                    {formErrors.lastName && (
+                      <p className="mt-1 text-sm text-red-600">
+                        {formErrors.lastName}
+                      </p>
+                    )}
+                  </div>
+                </div>
+
+                <div>
+                  <label className="block mb-1 text-sm font-medium text-gray-700">
+                    Company (Optional)
+                  </label>
+                  <Input
+                    value={companyDraft}
+                    onChange={(e) => setCompanyDraft(e.target.value)}
+                    placeholder="Enter company name"
+                  />
+                </div>
+
+                <div>
+                  <label className="block mb-1 text-sm font-medium text-gray-700">
+                    Street Address *
+                  </label>
+                  <Input
+                    value={streetDraft}
+                    onChange={(e) => setStreetDraft(e.target.value)}
+                    disabled={!canEditStreet}
+                    placeholder="House number and street name"
+                    error={!!formErrors.street}
+                  />
+                  {formErrors.street && (
+                    <p className="mt-1 text-sm text-red-600">
+                      {formErrors.street}
+                    </p>
+                  )}
+                </div>
+
+                <div>
+                  <label className="block mb-1 text-sm font-medium text-gray-700">
+                    Apartment, suite, etc. (Optional)
+                  </label>
+                  <Input
+                    value={aptDraft}
+                    onChange={(e) => setAptDraft(e.target.value)}
+                    placeholder="Apartment, suite, unit, etc."
+                  />
+                </div>
+
+                <div className="grid grid-cols-1 gap-4 md:grid-cols-2">
+                  <div>
+                    <label className="block mb-1 text-sm font-medium text-gray-700">
+                      Town/City *
+                    </label>
+                    <Input
+                      value={cityDraft}
+                      onChange={(e) => setCityDraft(e.target.value)}
+                      placeholder="Enter your city"
+                      error={!!formErrors.city}
+                    />
+                    {formErrors.city && (
+                      <p className="mt-1 text-sm text-red-600">
+                        {formErrors.city}
+                      </p>
+                    )}
+                  </div>
+                  <div>
+                    <label className="block mb-1 text-sm font-medium text-gray-700">
+                      Phone *
+                    </label>
+                    <Input
+                      type="tel"
+                      value={phoneDraft}
+                      onChange={(e) => setPhoneDraft(e.target.value)}
+                      placeholder="Enter your phone number"
+                      error={!!formErrors.phone}
+                    />
+                    {formErrors.phone && (
+                      <p className="mt-1 text-sm text-red-600">
+                        {formErrors.phone}
+                      </p>
+                    )}
+                  </div>
+                </div>
+              </div>
+            </div>
+
+            <div className="flex items-center gap-4 mt-4 md:col-span-2">
+              <Button
+                type="button"
+                className="px-5 py-2 text-white bg-red-500 rounded-md"
+                onClick={() => {
+                  if (!validateForm()) return;
+                  void savePersonalInfo();
+                }}
+              >
+                Save Personal Information
+              </Button>
+            </div>
+
+            <form onSubmit={onSavePassword} className="mt-4 md:col-span-2">
               <label className="block mb-2 text-sm">Password Changes</label>
               <div className="space-y-3">
                 <Input
@@ -164,6 +320,7 @@ export function Profile() {
                   value={currentPassword}
                   onChange={(e) => setCurrentPassword(e.target.value)}
                   className="w-full px-3 py-2 border rounded-md"
+                  required
                 />
                 <Input
                   type="password"
@@ -171,6 +328,8 @@ export function Profile() {
                   value={newPassword}
                   onChange={(e) => setNewPassword(e.target.value)}
                   className="w-full px-3 py-2 border rounded-md"
+                  minLength={6}
+                  required
                 />
                 <Input
                   type="password"
@@ -178,52 +337,29 @@ export function Profile() {
                   value={confirmPassword}
                   onChange={(e) => setConfirmPassword(e.target.value)}
                   className="w-full px-3 py-2 border rounded-md"
+                  minLength={6}
+                  required
                 />
+                <Button
+                  type="submit"
+                  className="w-full px-5 py-2 text-white bg-red-500 rounded-md md:w-auto"
+                >
+                  Update Password
+                </Button>
               </div>
-            </div>
+            </form>
 
-            {error && (
-              <div className="text-sm text-red-600 md:col-span-2">{error}</div>
-            )}
             {status && (
-              <div className="text-sm text-green-600 md:col-span-2">
+              <div className="p-3 mt-4 text-green-800 bg-green-100 border border-green-300 rounded">
                 {status}
               </div>
             )}
-
-            <div className="flex items-center gap-4 mt-4 md:col-span-2">
-              <Button
-                type="button"
-                className="px-5 py-2 border rounded-md"
-                onClick={() => {
-                  setCurrentPassword("");
-                  setNewPassword("");
-                  setConfirmPassword("");
-                  setStatus(null);
-                  setError(null);
-                  setFirstNameDraft("");
-                  setLastNameDraft("");
-                }}
-              >
-                Cancel
-              </Button>
-              <Button
-                type="submit"
-                className="px-5 py-2 text-white bg-red-500 rounded-md"
-              >
-                Save Changes
-              </Button>
-              {(canEditFirst || canEditLast || canEditAddress) && (
-                <Button
-                  type="button"
-                  className="px-5 py-2 text-white bg-gray-800 rounded-md"
-                  onClick={saveMissingNameParts}
-                >
-                  Save Profile
-                </Button>
-              )}
-            </div>
-          </form>
+            {error && (
+              <div className="p-3 mt-4 text-red-800 bg-red-100 border border-red-300 rounded">
+                {error}
+              </div>
+            )}
+          </div>
         </main>
       </div>
     </div>

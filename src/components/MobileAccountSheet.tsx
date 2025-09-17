@@ -9,8 +9,9 @@ import {
   CiSettings,
   CiLogout,
 } from "react-icons/ci";
-import { useUser } from "../hooks/useUser";
+import { useUser } from "../context/useUser";
 import { logOut } from "../services/auth";
+import { useCart } from "../context/cart-context";
 
 interface MobileAccountSheetProps {
   isOpen: boolean;
@@ -25,6 +26,7 @@ export function MobileAccountSheet({
   const [closing, setClosing] = useState(false);
   const navigate = useNavigate();
   const { user, setUser } = useUser();
+  const { clear } = useCart();
 
   useEffect(() => {
     if (isOpen) {
@@ -50,6 +52,7 @@ export function MobileAccountSheet({
   function handleLogOut() {
     logOut();
     setUser(null);
+    clear();
     setClosing(true);
     onClose?.();
     navigate("/");

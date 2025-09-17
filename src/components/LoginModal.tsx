@@ -6,7 +6,7 @@ import { Input, Button } from "../components";
 
 import { logIn } from "../services/auth";
 
-import { useUser } from "../hooks/useUser";
+import { useUser } from "../context/useUser";
 
 import singup from "../assets/signup.avif";
 
@@ -87,6 +87,7 @@ export function LoginModal({ open, onClose }: LoginModalProps) {
             <form className="space-y-4" onSubmit={handleLogin}>
               <Input
                 type="email"
+                name="email"
                 placeholder="Email"
                 value={email}
                 onChange={(e) => setEmail(e.target.value)}

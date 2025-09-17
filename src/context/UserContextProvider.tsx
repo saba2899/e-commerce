@@ -3,10 +3,15 @@ import { UserContext } from "./UserContext";
 import { getCurrentUser, type PublicUser } from "../services/auth";
 
 export function UserProvider({ children }: { children: ReactNode }) {
-  const [user, setUser] = useState<PublicUser | null>(null);
+  // Initialize synchronously from localStorage so protected routes don't
+  // see a null user on first render after refresh
+  const [user, setUser] = useState<PublicUser | null>(() => getCurrentUser());
 
+  // Keep user in sync with auth changes (login/logout)
   useEffect(() => {
-    setUser(getCurrentUser());
+    const handler = () => setUser(getCurrentUser());
+    window.addEventListener('authStateChange', handler);
+    return () => window.removeEventListener('authStateChange', handler);
   }, []);
 
   return (

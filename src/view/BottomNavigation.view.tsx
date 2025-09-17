@@ -10,7 +10,7 @@ import {
   HiUser,
   HiOutlineUser,
 } from "react-icons/hi2";
-import { useUser } from "../hooks/useUser";
+import { useUser } from "../context/useUser";
 import { MobileAccountSheet } from "../components";
 
 export const BottomNavigation = () => {

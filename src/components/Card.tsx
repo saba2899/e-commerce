@@ -9,9 +9,11 @@ import { IoEyeOutline } from "react-icons/io5";
 
 import { useState } from "react";
 
-import { useUser } from "../hooks/useUser";
+import { useUser } from "../context/useUser";
+import { useFavorites } from "../context/favorites-context";
 
 import { useNavigate } from "react-router";
+import { useCart } from "../context/cart-context";
 
 type CardProps = {
   product: Product;
@@ -35,6 +37,8 @@ export function Card({
 }: CardProps) {
   const navigate = useNavigate();
   const { user } = useUser();
+  const { isFavorite, toggleFavorite } = useFavorites();
+  const { addItem } = useCart();
   const [loginOpen, setLoginOpen] = useState(false);
   const title = product.title;
   const image = product.image;
@@ -66,10 +70,14 @@ export function Card({
                   setLoginOpen(true);
                   return;
                 }
+                toggleFavorite(product.id);
               }}
               className="grid w-8 h-8 transition bg-white rounded-full shadow-sm cursor-pointer place-items-center ring-1 ring-black/5 hover:bg-black hover:text-white"
             >
-              <CiHeart size={16} />
+              <CiHeart
+                size={16}
+                className={isFavorite(product.id) ? "text-red-500" : undefined}
+              />
             </button>
             <button
               type="button"
@@ -93,7 +101,14 @@ export function Card({
 
           <button
             type="button"
-            onClick={() => onAddToCart?.(product)}
+            onClick={() => {
+              if (!user) {
+                setLoginOpen(true);
+                return;
+              }
+              addItem(product, 1);
+              onAddToCart?.(product);
+            }}
             className="absolute left-0 right-0 w-full px-3 py-2 mx-auto text-sm text-white transition-all duration-200 translate-y-1 bg-black rounded opacity-0 bottom-3 group-hover:opacity-100 group-hover:translate-y-0"
             aria-label={`Add ${title} to cart`}
           >

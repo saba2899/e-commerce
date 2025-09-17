@@ -1,6 +1,6 @@
 import { useState } from "react";
 
-import { useUser } from "../hooks/useUser";
+import { useUser } from "../context/useUser";
 import {
   Logo,
   NavLinks,

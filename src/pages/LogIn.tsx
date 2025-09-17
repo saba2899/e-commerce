@@ -4,7 +4,7 @@ import { Button, Input } from "../components";
 import { useEffect, useState } from "react";
 import { logIn } from "../services/auth";
 import { useNavigate } from "react-router";
-import { useUser } from "../hooks/useUser";
+import { useUser } from "../context/useUser";
 
 export function LogIn() {
   const [email, setEmail] = useState("");

@@ -8,7 +8,7 @@ export function Thambnail({ product }: { product?: Product }) {
     return [product.image, product.image, product.image, product.image];
   }, [product?.image]);
 
-  const [selectedImageIdx, setSelectedImageIdx] = useState<number>(0);
+  const [selectedImageIdx] = useState<number>(0);
   const [selectedSize, setSelectedSize] = useState<string>("M");
   const [selectedColor] = useState<string | undefined>(undefined);
   const [quantity, setQuantity] = useState<number>(1);
@@ -30,16 +30,14 @@ export function Thambnail({ product }: { product?: Product }) {
   return (
     <div className="flex justify-center gap-5 mt-20 page-container">
       <div className="flex items-stretch w-full gap-5">
-        <div className="flex flex-col gap-3">
+        {/* <div className="flex flex-col gap-3">
           {images.map((src, i) => (
             <button
               key={i}
               type="button"
               onClick={() => setSelectedImageIdx(i)}
               className={`h-24 w-24 rounded-md bg-gray-100 grid place-items-center ring-1 ring-black/5 ${
-                selectedImageIdx === i
-                  ? "outline outline-2 outline-black/20"
-                  : ""
+                selectedImageIdx === i ? "outline-2 outline-black/20" : ""
               }`}
               aria-label={`Select image ${i + 1}`}
             >
@@ -54,7 +52,7 @@ export function Thambnail({ product }: { product?: Product }) {
               )}
             </button>
           ))}
-        </div>
+        </div> */}
 
         <div
           className="grid bg-gray-100 rounded-md place-items-center"

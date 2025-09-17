@@ -8,7 +8,7 @@ import { FiSend } from "react-icons/fi";
 
 export function Footer() {
   return (
-    <footer className="mt-24 text-white bg-black pb-22">
+    <footer className="mt-24 text-white bg-black pb-2">
       <div className="grid gap-10 py-12 page-container md:grid-cols-5">
         <div>
           <h3 className="text-xl font-semibold">Exclusive</h3>
