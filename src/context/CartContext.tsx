@@ -37,7 +37,7 @@ export function CartProvider({ children }: { children: ReactNode }) {
     const subtotal = items.reduce((acc, it) => acc + it.quantity * it.price, 0);
     return {
       items,
-      count,
+      count: count > 0 ? count : undefined,
       subtotal,
       addItem: (p: ProductInput, qty = 1) => {
         const id = normalizeId(p.id);

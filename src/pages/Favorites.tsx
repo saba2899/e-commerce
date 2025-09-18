@@ -1,6 +1,6 @@
 import { HiHeart } from "react-icons/hi2";
 import { useFavorites } from "../context/favorites-context";
-import { Card } from "../components";
+import { Card, MobileFavoritesLayout } from "../components";
 import type { Product } from "../types/productCard";
 import { useEffect, useMemo, useState } from "react";
 
@@ -31,39 +31,57 @@ export const Favorites = () => {
 
   if (loading) {
     return (
-      <div className="py-8 page-container">
-        <div className="grid grid-cols-1 gap-4 sm:grid-cols-2 lg:grid-cols-4">
-          {Array.from({ length: 8 }).map((_, i) => (
-            <div
-              key={i}
-              className="bg-gray-100 rounded-lg h-60 animate-pulse"
-            />
-          ))}
+      <>
+        {/* Mobile Loading */}
+        <div className="sm:hidden">
+          <MobileFavoritesLayout />
         </div>
-      </div>
+
+        {/* Desktop Loading */}
+        <div className="hidden sm:block py-8 page-container">
+          <div className="grid grid-cols-1 gap-4 sm:grid-cols-2 lg:grid-cols-4">
+            {Array.from({ length: 8 }).map((_, i) => (
+              <div
+                key={i}
+                className="bg-gray-100 rounded-lg h-60 animate-pulse"
+              />
+            ))}
+          </div>
+        </div>
+      </>
     );
   }
 
   return (
-    <div className="py-8 page-container">
-      <div className="mb-8">
-        <h1 className="text-2xl font-bold text-gray-900">Wishlist ({count})</h1>
+    <>
+      {/* Mobile Layout */}
+      <div className="sm:hidden">
+        <MobileFavoritesLayout />
       </div>
 
-      {items.length === 0 ? (
-        <div className="text-center">
-          <HiHeart className="w-16 h-16 mx-auto mb-4 text-purple-600" />
-          <p className="text-gray-600">
-            No favorites yet. Save items with the heart.
-          </p>
+      {/* Desktop Layout */}
+      <div className="hidden sm:block py-8 page-container">
+        <div className="mb-8">
+          <h1 className="text-2xl font-bold text-gray-900">
+            Wishlist ({count})
+          </h1>
         </div>
-      ) : (
-        <div className="grid grid-cols-1 gap-4 sm:grid-cols-2 lg:grid-cols-4">
-          {items.map((p) => (
-            <Card key={p.id} product={p} />
-          ))}
-        </div>
-      )}
-    </div>
+
+        {items.length === 0 ? (
+          <div className="text-center">
+            <HiHeart className="w-16 h-16 mx-auto mb-4 text-purple-600" />
+            <p className="text-gray-600">
+              No favorites yet. Save items with the heart.
+            </p>
+          </div>
+        ) : (
+          <div className="grid grid-cols-1 gap-4 sm:grid-cols-2 lg:grid-cols-4">
+            {items.map((p) => (
+              <Card key={p.id} product={p} />
+            ))}
+          </div>
+        )}
+      </div>
+    </>
   );
 };

@@ -1,5 +1,10 @@
 import { SwiperSlide } from "swiper/react";
-import { Card, ProductSlide, Thambnail } from "../components";
+import {
+  Card,
+  ProductSlide,
+  Thambnail,
+  MobileProductDetails,
+} from "../components";
 import { useEffect, useState } from "react";
 import { useLocation } from "react-router";
 import type { Product } from "../types/productCard";
@@ -47,8 +52,17 @@ export function ProductDetails() {
 
   return (
     <>
-      <Thambnail product={product} />
+      {/* Mobile Layout */}
+      <div className="sm:hidden">
+        <MobileProductDetails product={product} />
+      </div>
 
+      {/* Desktop Layout */}
+      <div className="hidden sm:block">
+        <Thambnail product={product} />
+      </div>
+
+      {/* Related Products */}
       <ProductSlide
         className="page-container"
         items={loading ? skeletonItems : related}

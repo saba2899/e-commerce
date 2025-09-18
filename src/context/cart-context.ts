@@ -10,7 +10,7 @@ export type CartItem = {
 
 export type CartContextValue = {
   items: CartItem[];
-  count: number;
+  count: number | undefined;
   subtotal: number;
   addItem: (p: any, qty?: number) => void;
   updateQty: (id: string | number, qty: number) => void;
@@ -18,12 +18,12 @@ export type CartContextValue = {
   clear: () => void;
 };
 
-export const CartContext = createContext<CartContextValue | undefined>(undefined);
+export const CartContext = createContext<CartContextValue | undefined>(
+  undefined
+);
 
 export function useCart(): CartContextValue {
   const ctx = useContext(CartContext);
   if (!ctx) throw new Error("useCart must be used within CartProvider");
   return ctx;
 }
-
-

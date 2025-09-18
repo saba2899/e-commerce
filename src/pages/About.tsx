@@ -1,5 +1,11 @@
 import { useEffect } from "react";
-import { StatTile, TeamMembers, BenefitsRow, BrandStory } from "../components";
+import {
+  StatTile,
+  TeamMembers,
+  BenefitsRow,
+  BrandStory,
+  MobileAboutLayout,
+} from "../components";
 
 export function About() {
   useEffect(function () {
@@ -7,11 +13,19 @@ export function About() {
   }, []);
 
   return (
-    <main>
-      <BrandStory />
-      <StatTile />
-      <TeamMembers />
-      <BenefitsRow />
-    </main>
+    <>
+      {/* Mobile Layout */}
+      <div className="sm:hidden">
+        <MobileAboutLayout />
+      </div>
+
+      {/* Desktop Layout */}
+      <main className="hidden sm:block">
+        <BrandStory />
+        <StatTile />
+        <TeamMembers />
+        <BenefitsRow />
+      </main>
+    </>
   );
 }

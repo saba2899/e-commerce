@@ -35,7 +35,8 @@ export function SearchBar() {
       .filter((p) => p.title.toLowerCase().includes(q))
       .slice(0, 6);
   }, [products, query]);
-  const showNoResults = open && query.trim().length >= 2 && suggestions.length === 0;
+  const showNoResults =
+    open && query.trim().length >= 2 && suggestions.length === 0;
 
   // Close dropdown on outside click
   useEffect(() => {
@@ -54,7 +55,7 @@ export function SearchBar() {
   }
 
   return (
-    <div ref={containerRef} className="relative w-[220px] sm:w-[260px] md:w-[320px]">
+    <div ref={containerRef} className="relative w-full">
       <form
         role="search"
         onSubmit={(e) => {
@@ -74,7 +75,7 @@ export function SearchBar() {
           id="header-search"
           type="search"
           placeholder="What are you looking for?"
-          className="w-full pl-4 pr-10 py-2 rounded-md bg-[#EFF0F6] placeholder=[#A0A3BD] outline-none"
+          className="w-full pl-4 pr-10 py-3 rounded-lg bg-[#EFF0F6] placeholder=[#A0A3BD] outline-none text-base mobile-search-input"
           value={query}
           onFocus={() => setOpen(true)}
           onChange={(e) => {
@@ -92,16 +93,20 @@ export function SearchBar() {
       </form>
 
       {open && suggestions.length > 0 && (
-        <ul className="absolute z-50 w-full mt-2 overflow-hidden bg-white border border-gray-200 rounded-md shadow-lg">
+        <ul className="absolute z-50 w-full mt-2 overflow-hidden bg-white border border-gray-200 rounded-lg shadow-lg">
           {suggestions.map((p) => (
             <li key={p.id}>
               <button
                 type="button"
                 onClick={() => goToProduct(p)}
-                className="flex w-full items-center gap-3 px-3 py-2 text-left hover:bg-gray-50"
+                className="flex w-full items-center gap-3 px-4 py-3 text-left hover:bg-gray-50"
                 title={p.title}
               >
-                <img src={p.image} alt="" className="object-contain w-8 h-8" />
+                <img
+                  src={p.image}
+                  alt=""
+                  className="object-contain w-10 h-10"
+                />
                 <span className="text-sm line-clamp-1">{p.title}</span>
               </button>
             </li>
@@ -109,8 +114,10 @@ export function SearchBar() {
         </ul>
       )}
       {showNoResults && (
-        <div className="absolute z-50 w-full mt-2 overflow-hidden bg-white border border-gray-200 rounded-md shadow-lg">
-          <div className="px-3 py-2 text-sm text-gray-600">Product not found</div>
+        <div className="absolute z-50 w-full mt-2 overflow-hidden bg-white border border-gray-200 rounded-lg shadow-lg">
+          <div className="px-4 py-3 text-sm text-gray-600">
+            Product not found
+          </div>
         </div>
       )}
     </div>

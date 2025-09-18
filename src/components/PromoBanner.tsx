@@ -10,7 +10,7 @@ export function PromoBanner() {
             <h1 className="text-5xl text-white">Enhance Your</h1>
             <span className="text-5xl text-white">Music Experience</span>
           </div>
-          <CountdownTimer targetDate={"2025-09-20T22:59:59"} variant="circle" />
+          <CountdownTimer targetDate={"2025-11-20T22:59:59"} variant="circle" />
           <Button className="w-50 bg-[#00FF66] hover:bg-[#00ff66c9] text-white text-md">
             Buy now
           </Button>

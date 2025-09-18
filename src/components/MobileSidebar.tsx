@@ -1,6 +1,8 @@
 import { useEffect, useState } from "react";
 import clsx from "clsx";
+import { CiSearch } from "react-icons/ci";
 import { CATEGORIES } from "../data/categories";
+import { SearchBar } from "./SearchBar";
 
 interface MobileSidebarProps {
   isOpen: boolean;
@@ -64,7 +66,23 @@ export function MobileSidebar({ isOpen, onClose }: MobileSidebarProps) {
           panelAnim
         )}
       >
+        {/* Mobile Search Section */}
+        <div className="mb-6">
+          <div className="flex items-center gap-2 mb-4">
+            <CiSearch className="text-gray-600" size={20} />
+            <h3 className="text-lg font-semibold text-gray-800">
+              Search Products
+            </h3>
+          </div>
+          <div className="w-full">
+            <SearchBar />
+          </div>
+        </div>
+
         <nav className="space-y-4 text-lg">
+          <h3 className="text-lg font-semibold text-gray-800 mb-4">
+            Categories
+          </h3>
           <ul className="flex flex-col items-center gap-1">
             {CATEGORIES.map(({ label, href }) => (
               <li key={label}>

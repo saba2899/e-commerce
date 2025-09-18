@@ -3,20 +3,22 @@ import { useState } from "react";
 import {
   HiHome,
   HiOutlineHome,
-  HiPhone,
-  HiOutlinePhone,
   HiHeart,
   HiOutlineHeart,
-  HiUser,
-  HiOutlineUser,
+  HiMagnifyingGlass,
+  HiOutlineMagnifyingGlass,
+  HiShoppingBag,
+  HiOutlineShoppingBag,
 } from "react-icons/hi2";
-import { useUser } from "../context/useUser";
-import { MobileAccountSheet } from "../components";
+import { useCart } from "../context/cart-context";
+import { useFavorites } from "../context/favorites-context";
+import { MobileSearchModal } from "../components";
 
 export const BottomNavigation = () => {
   const location = useLocation();
-  const [accountOpen, setAccountOpen] = useState(false);
-  const { user } = useUser();
+  const [searchOpen, setSearchOpen] = useState(false);
+  const { count: cartCount } = useCart();
+  const { count: favoritesCount } = useFavorites();
 
   const navItems = [
     {
@@ -26,30 +28,27 @@ export const BottomNavigation = () => {
       activeIcon: HiHome,
     },
     {
-      name: "Contact",
-      path: "/contact",
-      icon: HiOutlinePhone,
-      activeIcon: HiPhone,
+      name: "Search",
+      path: "#",
+      icon: HiOutlineMagnifyingGlass,
+      activeIcon: HiMagnifyingGlass,
+      isButton: true,
+      onClick: () => setSearchOpen(true),
     },
     {
       name: "Favorites",
       path: "/favorites",
       icon: HiOutlineHeart,
       activeIcon: HiHeart,
+      count: favoritesCount,
     },
-    user
-      ? {
-          name: "Profile",
-          path: "/profile",
-          icon: HiOutlineUser,
-          activeIcon: HiUser,
-        }
-      : {
-          name: "Login",
-          path: "/login",
-          icon: HiOutlineUser,
-          activeIcon: HiUser,
-        },
+    {
+      name: "Cart",
+      path: "/cart",
+      icon: HiOutlineShoppingBag,
+      activeIcon: HiShoppingBag,
+      count: cartCount,
+    },
   ];
 
   return (
@@ -59,18 +58,18 @@ export const BottomNavigation = () => {
           const isActive = location.pathname === item.path;
           const Icon = isActive ? item.activeIcon : item.icon;
 
-          const commonClasses = `flex flex-col items-center justify-center py-2 px-3 rounded-lg transition-all duration-200 min-w-0 flex-1 ${
+          const commonClasses = `flex flex-col items-center justify-center py-2 px-3 rounded-lg transition-all duration-200 min-w-0 flex-1 relative ${
             isActive
               ? "text-red-600 bg-red-50"
               : "text-gray-500 hover:text-red-600 hover:bg-purple-50"
           }`;
 
-          if (user && item.name === "Profile") {
+          if (item.isButton) {
             return (
               <button
                 key={item.name}
                 type="button"
-                onClick={() => setAccountOpen((v) => !v)}
+                onClick={item.onClick}
                 className={commonClasses}
               >
                 <Icon className="w-6 h-6 mb-1" />
@@ -83,18 +82,24 @@ export const BottomNavigation = () => {
 
           return (
             <Link key={item.name} to={item.path} className={commonClasses}>
-              <Icon className="w-6 h-6 mb-1" />
+              <div className="relative">
+                <Icon className="w-6 h-6 mb-1" />
+                {item.count && item.count > 0 && (
+                  <div className="absolute -top-1 -right-1 bg-red-500 text-white text-xs rounded-full w-5 h-5 flex items-center justify-center font-bold">
+                    {item.count > 99 ? "99+" : item.count}
+                  </div>
+                )}
+              </div>
               <span className="text-xs font-medium truncate">{item.name}</span>
             </Link>
           );
         })}
       </div>
-      {user && (
-        <MobileAccountSheet
-          isOpen={accountOpen}
-          onClose={() => setAccountOpen(false)}
-        />
-      )}
+
+      <MobileSearchModal
+        isOpen={searchOpen}
+        onClose={() => setSearchOpen(false)}
+      />
     </div>
   );
 };

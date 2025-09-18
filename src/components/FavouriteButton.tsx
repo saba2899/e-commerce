@@ -28,10 +28,10 @@ export function FavouriteButton() {
         type="button"
         aria-label="Wishlist"
         onClick={handleClick}
-        className="relative hidden p-2 cursor-pointer lg:block rounded:md hover:bg-black/5"
+        className="relative hidden p-2 cursor-pointer sm:block rounded-md hover:bg-black/5"
       >
         <CiHeart size={22} />
-        {count > 0 && (
+        {count && count > 0 && (
           <span className="absolute -right-1 -top-1 min-w-5 h-5 rounded-full bg-red-500 text-white text-[10px] leading-5 text-center px-1">
             {count}
           </span>

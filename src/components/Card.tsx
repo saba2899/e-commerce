@@ -82,9 +82,13 @@ export function Card({
             <button
               type="button"
               aria-label="View details"
-              onClick={() =>
-                navigate("/productdetails", { state: { product } })
-              }
+              onClick={() => {
+                navigate("/productdetails", { state: { product } });
+                // Scroll to top after navigation
+                setTimeout(() => {
+                  window.scrollTo({ top: 0, behavior: "smooth" });
+                }, 100);
+              }}
               className="grid w-8 h-8 transition bg-white rounded-full shadow-sm cursor-pointer place-items-center ring-1 ring-black/5 hover:bg-black hover:text-white"
             >
               <IoEyeOutline size={16} />

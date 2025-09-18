@@ -20,10 +20,12 @@ export function FavoritesProvider({ children }: { children: ReactNode }) {
         const raw = localStorage.getItem(key);
         if (raw) return new Set((JSON.parse(raw) as string[]) ?? []);
         // legacy migration fallback
-        const legacy = localStorage.getItem('favorites_ids');
+        const legacy = localStorage.getItem("favorites_ids");
         if (legacy) return new Set((JSON.parse(legacy) as string[]) ?? []);
       }
-    } catch {}
+    } catch {
+      // ignore storage errors
+    }
     return new Set();
   });
 
@@ -38,10 +40,10 @@ export function FavoritesProvider({ children }: { children: ReactNode }) {
       let raw = localStorage.getItem(key);
       if (!raw) {
         // Migrate from legacy key if present
-        const legacy = localStorage.getItem('favorites_ids');
+        const legacy = localStorage.getItem("favorites_ids");
         if (legacy) {
           localStorage.setItem(key, legacy);
-          localStorage.removeItem('favorites_ids');
+          localStorage.removeItem("favorites_ids");
           raw = legacy;
         }
       }
@@ -54,7 +56,7 @@ export function FavoritesProvider({ children }: { children: ReactNode }) {
     } catch {
       setFavorites(new Set());
     }
-  }, [user?.id]);
+  }, [user]);
 
   // Persist favorites whenever they change for the current user
   useEffect(() => {
@@ -66,19 +68,19 @@ export function FavoritesProvider({ children }: { children: ReactNode }) {
     } catch {
       // ignore storage errors
     }
-  }, [favorites, user?.id]);
+  }, [favorites, user]);
 
   // Clear favorites immediately when requested (e.g., on logout)
   useEffect(() => {
     const handler = () => setFavorites(new Set());
-    window.addEventListener('favoritesReset', handler);
-    return () => window.removeEventListener('favoritesReset', handler);
+    window.addEventListener("favoritesReset", handler);
+    return () => window.removeEventListener("favoritesReset", handler);
   }, []);
 
   const value = useMemo<FavoritesContextValue>(
     () => ({
       favorites,
-      count: favorites.size,
+      count: favorites.size > 0 ? favorites.size : undefined,
       isFavorite: (id) => favorites.has(normalizeId(id)),
       toggleFavorite: (id) => {
         const key = normalizeId(id);

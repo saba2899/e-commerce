@@ -4,7 +4,7 @@ export type FavoriteId = string;
 
 export type FavoritesContextValue = {
   favorites: Set<FavoriteId>;
-  count: number;
+  count: number | undefined;
   isFavorite: (id: FavoriteId | number) => boolean;
   toggleFavorite: (id: FavoriteId | number) => void;
   addFavorite: (id: FavoriteId | number) => void;

@@ -12,7 +12,7 @@ export function CartButton({ count: countProp }: { count?: number }) {
       className="relative hidden p-2 cursor-pointer lg:block rounded:md hover:bg-black/5 "
     >
       <CiShoppingCart size={22} />
-      {(countProp ?? count) > 0 && (
+      {((countProp ?? count) ?? 0) > 0 && (
         <span className="absolute  -right-1 -top-1 min-w-5 h-5 rounded-full bg-red-500 text-white text-[10px] leading-5 text-center px-1">
           {countProp ?? count}
         </span>

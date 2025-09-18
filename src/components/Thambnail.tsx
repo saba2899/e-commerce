@@ -1,6 +1,6 @@
 import type { Product } from "../types/productCard";
 import { StarRating } from "../components";
-import { useMemo, useState } from "react";
+import { useMemo, useState, useEffect } from "react";
 
 export function Thambnail({ product }: { product?: Product }) {
   const images = useMemo<string[]>(() => {
@@ -12,6 +12,13 @@ export function Thambnail({ product }: { product?: Product }) {
   const [selectedSize, setSelectedSize] = useState<string>("M");
   const [selectedColor] = useState<string | undefined>(undefined);
   const [quantity, setQuantity] = useState<number>(1);
+
+  // Scroll to top when product changes
+  useEffect(() => {
+    if (product) {
+      window.scrollTo({ top: 0, behavior: "smooth" });
+    }
+  }, [product]);
 
   const increase = () => setQuantity((q) => Math.min(q + 1, 99));
   const decrease = () => setQuantity((q) => Math.max(q - 1, 1));

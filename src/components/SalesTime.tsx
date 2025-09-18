@@ -6,7 +6,7 @@ export function SalesTime() {
       <Tag>Today’s</Tag>
       <div className="flex flex-wrap items-center gap-6 lg:gap-20">
         <SectionTitle className="shrink-0">Flash Sales</SectionTitle>
-        <CountdownTimer targetDate="2025-09-10T22:59:59" variant="flashSale" />
+        <CountdownTimer targetDate="2025-11-10T22:59:59" variant="flashSale" />
       </div>
     </div>
   );
