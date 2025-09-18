@@ -136,14 +136,14 @@ export function MobileFooter() {
                 {section.items.map((item, index) => (
                   <div
                     key={index}
-                    onClick={item.onClick}
+                    onClick={"onClick" in item ? item.onClick : undefined}
                     className={`flex items-center gap-3 text-gray-300 ${
-                      item.onClick
+                      "onClick" in item
                         ? "cursor-pointer hover:text-white transition-colors"
                         : ""
                     }`}
                   >
-                    {item.icon && item.icon}
+                    {"icon" in item && item.icon}
                     <span className="text-sm">{item.text}</span>
                   </div>
                 ))}

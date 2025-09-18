@@ -22,7 +22,7 @@ export function MobileCartLayout() {
     setIsVisible(true);
   }, []);
 
-  const handleQuantityChange = (id: number, newQuantity: number) => {
+  const handleQuantityChange = (id: string, newQuantity: number) => {
     if (newQuantity <= 0) {
       removeItem(id);
     } else {
