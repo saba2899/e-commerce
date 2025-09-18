@@ -5,8 +5,8 @@ import seo from "../assets/members/Seo.jpg";
 import analitycs from "../assets/members/analitycs.jpg";
 import digitalMarketing from "../assets/members/digitalMarketing.jpg";
 import uxDes from "../assets/members/uxDes.jpg";
-import mobileDev from "../assets/members/mobileDev.jpg";
-import software from "../assets/members/software.jpg";
+import mobileDev from "../assets/members/MobileDev.jpg";
+import software from "../assets/members/Software.jpg";
 
 export type TeamMembersProps = {
   id: number;
