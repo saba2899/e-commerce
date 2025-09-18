@@ -1,4 +1,12 @@
-// import founder from "../assets/members/founder.webp";
+import founder from "../assets/members/founder.jpg";
+import director from "../assets/members/director.jpg";
+import productDesigner from "../assets/members/productDesigner.jpg";
+import seo from "../assets/members/seo.jpg";
+import analitycs from "../assets/members/analitycs.jpg";
+import digitalMarketing from "../assets/members/digitalMarketing.jpg";
+import uxDes from "../assets/members/uxDes.jpg";
+import mobileDev from "../assets/members/mobileDev.jpg";
+import software from "../assets/members/software.jpg";
 
 export type TeamMembersProps = {
   id: number;
@@ -11,63 +19,63 @@ export type TeamMembersProps = {
 export const TEAMMEMBERS: TeamMembersProps[] = [
   {
     id: 1,
-    image: "src/assets/members/founder.jpg",
+    image: founder,
     name: "Saba",
     lastName: "Chitorelidze",
     position: "Founder & Chairman",
   },
   {
     id: 2,
-    image: "src/assets/members/director.jpg",
+    image: director,
     name: "Tako",
     lastName: "Razmadze",
     position: "Director",
   },
   {
     id: 3,
-    image: "src/assets/members/productDesigner.jpg",
+    image: productDesigner,
     name: "Lela",
     lastName: "Moniava",
     position: "Product Designer",
   },
   {
     id: 4,
-    image: "src/assets/members/seo.jpg",
+    image: seo,
     name: "Nikoloz",
     lastName: "Archvadze",
     position: "SEO Specialist",
   },
   {
     id: 5,
-    image: "src/assets/members/analitycs.jpg",
+    image: analitycs,
     name: "Nikoloz",
     lastName: "Ezieshvili",
     position: "Web Analytics Developer",
   },
   {
     id: 6,
-    image: "src/assets/members/digitalMarketing.jpg",
+    image: digitalMarketing,
     name: "Irakli",
     lastName: "Machaidze",
     position: "Digital Marketing Manager",
   },
   {
     id: 7,
-    image: "src/assets/members/uxDes.jpg",
+    image: uxDes,
     name: "Nikoloz",
     lastName: "Maisuradze",
     position: "UX Designer",
   },
   {
     id: 8,
-    image: "src/assets/members/mobileDev.jpg",
+    image: mobileDev,
     name: "Tornike",
     lastName: "Keshelava",
     position: "Mobile Developer",
   },
   {
     id: 9,
-    image: "src/assets/members/software.jpg",
+    image: software,
     name: "Shota",
     lastName: "Tabatadze",
     position: "Software Developer",
